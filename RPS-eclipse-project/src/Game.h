@@ -10,9 +10,11 @@
 
 #include <iostream>
 #include <string>
+#include "Player.h"
+#include "Judge.h"
 #include "Npc.h"
 #include "Human.h"
-#include "judge.h"
+
 using namespace std;
 
 const int totalRounds = 20;

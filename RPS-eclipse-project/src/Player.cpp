@@ -30,5 +30,8 @@ string Player::getHandString()
 	}
 	return displayHand;
 }
-
+void Player::incrementScore()
+{
+	score++;
+}
 

@@ -10,6 +10,10 @@
 
 #include <iostream>
 #include <string>
+#include "Player.h"
+#include "Npc.h"
+#include "Human.h"
+
 using namespace std;
 
 class Judge
@@ -19,8 +23,7 @@ class Judge
 		evaluation condition;
 	public:
 		Judge();
-		void getEvaluation(string human, string npc);
-		int changeScore ();  //return 1 for human to ++, return 2 for npc to ++, return 3 for tie
+		void getEvaluation(string human, string npc, Player& humanPlayer, Player& NPCPlayer);
 };
 
 

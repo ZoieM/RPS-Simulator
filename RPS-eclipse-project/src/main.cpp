@@ -8,10 +8,10 @@
 
 #include <iostream>
 #include "Player.h"
-#include "judge.h"
 #include "Human.h"
 #include "Npc.h"
 #include "Game.h"
+#include "Judge.h"
 using namespace std;
 
 /*
@@ -38,6 +38,7 @@ int main() {
 	return 0;
 }
 */
+
 
 int main()
 {

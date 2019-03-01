@@ -18,7 +18,6 @@ class Npc: public Player
 	protected:
 		~Npc();
 	public:
-		void incrementScore(int condition);
 		void requestHand(char c);
 };
 
