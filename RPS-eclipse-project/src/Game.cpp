@@ -14,6 +14,9 @@ Game::Game() {
 	// TODO Auto-generated constructor stub
 	runGame = false; //game will not be running until it is initialized & user starts a game
 	round = 0; //set to 1 when player starts a game
+	humanPlayer = new Human;
+	NPCPlayer = new Npc;
+	theJudge = new Judge;
 }
 
 Game::~Game() {
@@ -76,7 +79,7 @@ char Game::requestPlayerHand()//TODO change this to get enum
 					}
 	if(playerHand != invalid)
 	{
-		humanPlayer.pickHand(playerHand);
+		humanPlayer.requestHand(choice);
 	}
 	//TODO evaluate character with a switch statement.
 		//If valid char (r, p, or s) create enumerated type and finish round

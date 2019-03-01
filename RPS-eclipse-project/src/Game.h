@@ -10,6 +10,9 @@
 
 #include <iostream>
 #include <string>
+#include "Npc.h"
+#include "Human.h"
+#include "judge.h"
 using namespace std;
 
 const int totalRounds = 20;
@@ -22,8 +25,9 @@ public:
 	bool Initialization();
 	bool getRunGame();
 private:
-	Human humanPlayer();
-	NPC NPCPlayer();
+	Human humanPlayer;
+	Npc NPCPlayer;
+	Judge theJudge;
 	bool runGame;
 	int round; //TODO add support so game will play exactly totalRounds
 	void startGame();
