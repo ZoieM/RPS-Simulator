@@ -119,9 +119,9 @@ void Game::displayGameResults()
 bool Game::Initialization() {
 	char choice;
 	bool validInput = false;
-	bool playAgain = false;
+//	bool playAgain = false;
 
-	do{
+
 		cout << "Welcome to RPS Simulator." << endl;
 		do{
 			cout << "Enter [s] to start a new game or [q] to quit the program: " << flush;
@@ -182,32 +182,32 @@ bool Game::Initialization() {
 			{
 				cout << "YOU TIED! WOW, WHAT ARE THE ODDS?" << endl;
 			}
-
+			return true;
 		}
-		else
-		{
-			//if this else statement is reached, an error occurred. End the program.
-			return false;
-		}
+//		else
+//		{
+//			//if this else statement is reached, an error occurred. End the program.
+//			return false;
+//		}
 
-		do{
-			cout << "Would you like to play again? [y/n]: " << flush;
-			cin >> choice;
-			switch (tolower(choice)) {//make case insensitive
-				case 'y':  validInput = true;
-						   playAgain = true;
-						   break;
+//		do{
+//			cout << "Would you like to play again? [y/n]: " << flush;
+//			cin >> choice;
+//			switch (tolower(choice)) {//make case insensitive
+//				case 'y':  validInput = true;
+//						   playAgain = true;
+//						   break;
+//
+//				case 'n':  return true;
+//
+//				default: validInput = false;
+//						 cout << "Invalid Input. Please enter another choice." << endl;
+//						 break;
+//			}
+//		}while(!validInput);//repeat message if input is invalid
 
-				case 'n':  return true;
+//	}while(playAgain);
 
-				default: validInput = false;
-						 cout << "Invalid Input. Please enter another choice." << endl;
-						 break;
-			}
-		}while(!validInput);//repeat message if input is invalid
-
-	}while(playAgain);
-
-	return true;
+	return false;
 
 }
