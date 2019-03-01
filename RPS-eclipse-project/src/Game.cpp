@@ -85,7 +85,7 @@ char Game::requestPlayerHand()//TODO change this to get enum
 		//If valid char (r, p, or s) create enumerated type and finish round
 		//If invalid, return the character so other request is dealt with.
 	cout << "[Playing a round]" << endl;
-	return;
+	return choice;
 }
 
 void displayGameResults()

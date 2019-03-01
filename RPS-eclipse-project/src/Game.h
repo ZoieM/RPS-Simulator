@@ -25,9 +25,9 @@ public:
 	bool Initialization();
 	bool getRunGame();
 private:
-	Human humanPlayer;
-	Npc NPCPlayer;
-	Judge theJudge;
+	Player *humanPlayer;
+	Player *NPCPlayer;
+	Judge *theJudge;
 	bool runGame;
 	int round; //TODO add support so game will play exactly totalRounds
 	void startGame();
