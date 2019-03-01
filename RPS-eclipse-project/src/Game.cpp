@@ -27,8 +27,21 @@ void Game::startGame()
 {
 	runGame = true;
 	round = 1; //begin with round 1;
-	//TODO to create human, npc, and judge--SHOULD THESE BE PRIVATE VARS? OR DYNAMIC?
 	//TODO explain rules/options to player
+	cout << "\n\nINSTRUCTIONS______________________________________________________________________________" << endl
+		 << "The game is " << totalRounds << " rounds. Every round, chose one option:\n"
+		 << "[r]\tTo play Rock\n"
+		 << "[p]\tTo play Paper\n"
+		 << "[s]\tTo play Scissors\n"
+		 << "\nAs you choose, the computer player will also pick an option. Then, we will see who wins.\n"
+		 << "\nEvery round, the winner gets a point. The rules to win are as follows:\n"
+		 << "+ Rock beats Scissors\n"
+		 << "+ Scissors beats Paper\n"
+		 << "+ Paper beats Rock\n"
+		 << "But, if you both pick the same option, it's a tie and no one wins any points\n"
+		 << "\n\nNOTE: You can quit the game at any time by entering [q] instead of [r], [p], or [s]. Good luck!\n"
+		 << endl;
+
 	return;
 }
 
@@ -55,6 +68,7 @@ char Game::requestPlayerHand()//TODO change this to get enum
 	bool validInput = false;
 	hand playerHand = invalid;
 	//TODO prompt player for a character (r, p, s, or q)
+	do{
 	cout << "Enter choice: " << flush;
 	cin >> choice;
 	switch (tolower(choice)) {//make case insensitive
@@ -77,20 +91,27 @@ char Game::requestPlayerHand()//TODO change this to get enum
 							 cout << "Invalid Input. Please enter another choice." << endl;
 							 break;
 					}
+	}while(!validInput);//repeat message if input is invalid
 	if(playerHand != invalid)
 	{
 		humanPlayer->requestHand(choice);
+		NPCPlayer->requestHand(choice);//we have to pass a char parameter, but it gets ignored and picks a random value
+
 	}
 	//TODO evaluate character with a switch statement.
 		//If valid char (r, p, or s) create enumerated type and finish round
 		//If invalid, return the character so other request is dealt with.
-	cout << "[Playing a round]" << endl;
 	return choice;
 }
 
 void Game::displayGameResults()
 {
-	cout << "__GAME RESULTS__" << endl;
+	cout << "You chose " << humanPlayer->getHandString() << ", and the computer chose " << NPCPlayer->getHandString() << "." << endl;
+	theJudge->getEvaluation(humanPlayer->getHandString(), NPCPlayer->getHandString());
+	humanPlayer->incrementScore(theJudge->changeScore());
+	NPCPlayer->incrementScore(theJudge->changeScore());
+	cout<<"Your score: "<<humanPlayer->getScore()<<endl;
+	cout<<"NPC score: "<<NPCPlayer->getScore()<<endl;
 	//TODO print result of the round
 	return;
 }
@@ -122,6 +143,8 @@ bool Game::Initialization() {
 
 		while(runGame && round <= totalRounds)
 		{
+			cout << "\nROUND " << round << "__________________________________________________________________________________" << endl;
+
 			choice = requestPlayerHand();
 			//check for any special requests, like quitting, helping, restarting..
 			switch (tolower(choice)) { //make case insensitive
@@ -141,7 +164,25 @@ bool Game::Initialization() {
 		else if(runGame && round > totalRounds)//if player finished every round without quitting
 		{
 			//TODO post final score and clean up
-			return true;
+			cout << "\nFINAL SCORES______________________________________________________________________________" << endl;
+			int finalHumanScore = humanPlayer->getScore();
+			int finalNPCScore = NPCPlayer->getScore();
+			cout<<"\nYour score: "<< finalHumanScore <<endl;
+			cout<<"NPC score: "<< finalNPCScore <<endl;
+
+			if(finalHumanScore > finalNPCScore )
+			{
+				cout << "YOU WON THE GAME :) CONGRATULATIONS!" << endl;
+			}
+			else if(finalHumanScore < finalNPCScore )
+			{
+				cout << "YOU LOST THE GAME :( BETTER LUCK NEXT TIME!" << endl;
+			}
+			else if(finalHumanScore == finalNPCScore )
+			{
+				cout << "YOU TIED! WOW, WHAT ARE THE ODDS?" << endl;
+			}
+
 		}
 		else
 		{
@@ -157,9 +198,7 @@ bool Game::Initialization() {
 						   playAgain = true;
 						   break;
 
-				case 'n':  validInput = true;
-						   playAgain = false;
-						   break;
+				case 'n':  return true;
 
 				default: validInput = false;
 						 cout << "Invalid Input. Please enter another choice." << endl;
