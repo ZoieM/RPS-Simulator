@@ -14,11 +14,9 @@ void Human::incrementScore(int condition)
 		score++;
 }
 
-void Human::requestHand()
+void Human::requestHand(char c)
 {
-	char choice;
-	cout<<"Pick your hand: [r]ock, [p]aper, [s]cissor"<<endl;
-	cin>>choice;
+	char choice=c;
 	if (choice=='r')
 		playerHand=rock;
 	else if (choice=='p')

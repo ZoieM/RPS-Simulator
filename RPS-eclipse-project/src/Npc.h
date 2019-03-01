@@ -19,7 +19,7 @@ class Npc: public Player
 		~Npc();
 	public:
 		void incrementScore(int condition);
-		void requestHand();
+		void requestHand(char c);
 };
 
 

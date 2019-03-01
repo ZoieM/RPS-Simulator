@@ -18,7 +18,7 @@ class Human: public Player
 	protected:
 		~Human();
 	public:
-		void requestHand();
+		void requestHand(char c);
 		void incrementScore(int condition);
 };
 

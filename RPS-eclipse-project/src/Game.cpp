@@ -79,7 +79,7 @@ char Game::requestPlayerHand()//TODO change this to get enum
 					}
 	if(playerHand != invalid)
 	{
-		humanPlayer.requestHand(choice);
+		humanPlayer->requestHand(choice);
 	}
 	//TODO evaluate character with a switch statement.
 		//If valid char (r, p, or s) create enumerated type and finish round
@@ -88,7 +88,7 @@ char Game::requestPlayerHand()//TODO change this to get enum
 	return choice;
 }
 
-void displayGameResults()
+void Game::displayGameResults()
 {
 	cout << "__GAME RESULTS__" << endl;
 	//TODO print result of the round

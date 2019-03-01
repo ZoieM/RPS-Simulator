@@ -15,7 +15,7 @@ void Npc::incrementScore(int condition)
 		score++;
 }
 
-void Npc::requestHand()
+void Npc::requestHand(char c)
 {
 	int npcChoice = (rand()%3)+1;
 	if (npcChoice==1)
@@ -25,4 +25,5 @@ void Npc::requestHand()
 	else if (npcChoice==3)
 		playerHand=scissors;
 }
+
 
