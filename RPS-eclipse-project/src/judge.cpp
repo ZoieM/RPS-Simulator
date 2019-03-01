@@ -54,6 +54,13 @@ void Judge::getEvaluation(string human, string npc)
 		else if (npc=="Rock")
 			condition=lose;
 	}
+
+	if (condition==win)
+		cout<<"You win!"<<endl;
+	else if (condition==lose)
+		cout<<"You lose!"<<endl;
+	else if (condition==tie)
+		cout<<"You tie!"<<endl;
 }
 
 
