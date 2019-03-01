@@ -16,8 +16,6 @@
 #include "Human.h"
 
 using namespace std;
-
-const int totalRounds = 20;
 enum hand { rock, paper, scissors, invalid };
 
 class Game {
@@ -26,12 +24,13 @@ public:
 	virtual ~Game();
 	bool Initialization();
 	bool getRunGame();
+	const int totalRounds = 20;
 private:
 	Player *humanPlayer;
 	Player *NPCPlayer;
 	Judge *theJudge;
 	bool runGame;
-	int round; //TODO add support so game will play exactly totalRounds
+	int round; //Game will last totalRounds
 	void startGame();
 	void quitGame();
 	char requestPlayerHand();

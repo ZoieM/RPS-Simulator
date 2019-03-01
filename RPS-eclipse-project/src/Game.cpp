@@ -11,23 +11,35 @@
 using namespace std;
 
 Game::Game() {
-	// TODO Auto-generated constructor stub
 	runGame = false; //game will not be running until it is initialized & user starts a game
 	round = 0; //set to 1 when player starts a game
+	//define pointers
 	humanPlayer = new Human;
 	NPCPlayer = new Npc;
 	theJudge = new Judge;
 }
 
 Game::~Game() {
-	// TODO Auto-generated destructor stub
+	//delete any dynamically created variables
+	if(humanPlayer!=null)
+	{
+		delete humanPlayer;
+	}
+	if(NPCPlayer!=null)
+	{
+		delete NPCPlayer;
+	}
+	if(theJudge!=null)
+	{
+		delete theJudge;
+	}
 }
 
 void Game::startGame()
 {
-	runGame = true;
+	runGame = true; //remember that the game is running
 	round = 1; //begin with round 1;
-	//TODO explain rules/options to player
+	//Explain rules and options to player
 	cout << "\n\nINSTRUCTIONS______________________________________________________________________________" << endl
 		 << "The game is " << totalRounds << " rounds. Every round, chose one option:\n"
 		 << "[r]\tTo play Rock\n"
@@ -47,8 +59,7 @@ void Game::startGame()
 
 void Game::quitGame()
 {
-	runGame = false;
-	//add more?
+	runGame = false; //Remember we don't want to run the game anymore
 	return;
 }
 
@@ -64,124 +75,130 @@ bool Game::getRunGame() {
 
 char Game::requestPlayerHand()//TODO change this to get enum
 {
-	char choice = '?';
-	bool validInput = false;
-	hand playerHand = invalid;
-	//TODO prompt player for a character (r, p, s, or q)
+	char choice = '?'; //initialize choice as an invalid character
+	bool validInput = false; //input is invalid until proven otherwise
+	hand playerHand = invalid; //player hand is invalid until we collect it
+	//Prompt player for a character (r, p, s, or q)
 	do{
-	cout << "Enter choice: " << flush;
-	cin >> choice;
-	switch (tolower(choice)) {//make case insensitive
-					case 's':  validInput = true;
-							   playerHand = scissors;
-							   break;
+		cout << "Enter choice: " << flush;
+		cin >> choice;
+		switch (tolower(choice)) {//make case insensitive
+			case 's':  validInput = true;
+				   playerHand = scissors;
+				   break;
 
-					case 'r':  validInput = true;
-							   playerHand = rock;
-							   break;
+			case 'r':  validInput = true;
+				   playerHand = rock;
+				   break;
 
-					case 'p':  validInput = true;
-							   playerHand = paper;
-							   break;
+			case 'p':  validInput = true;
+				   playerHand = paper;
+				   break;
 
-					case 'q':  validInput = true;
-							   break;
+			case 'q':  validInput = true;
+				   break;
 
-					default: validInput = false;
-							 cout << "Invalid Input. Please enter another choice." << endl;
-							 break;
-					}
+			default: validInput = false;
+				   cout << "Invalid Input. Please enter another choice." << endl;
+				   break;
+		}
 	}while(!validInput);//repeat message if input is invalid
-	if(playerHand != invalid)
+	if(playerHand != invalid)//if the player didn't quit
 	{
 		humanPlayer->requestHand(choice);
 		NPCPlayer->requestHand(choice);//we have to pass a char parameter, but it gets ignored and picks a random value
 
 	}
-	//TODO evaluate character with a switch statement.
-		//If valid char (r, p, or s) create enumerated type and finish round
-		//If invalid, return the character so other request is dealt with.
+	//return the character in case game init needs to react (like if player wants to quit).
 	return choice;
 }
 
 void Game::displayGameResults()
 {
+	//For the round, display player and computer choices, the evaluation (win, lose, or tie), and the new scores
 	cout << "You chose " << humanPlayer->getHandString() << ", and the computer chose " << NPCPlayer->getHandString() << "." << endl;
 	theJudge->getEvaluation(humanPlayer->getHandString(), NPCPlayer->getHandString(), *humanPlayer, *NPCPlayer);
 	cout<<"Your score: "<<humanPlayer->getScore()<<endl;
 	cout<<"NPC score: "<<NPCPlayer->getScore()<<endl;
-	//TODO print result of the round
 	return;
 }
 
 bool Game::Initialization() {
-	char choice;
-	bool validInput = false;
+	//NOTE: Code for playAgain functionality is commented out, b/c we don't have a way to reset scores yet
+	char choice; //hold player input
+	bool validInput = false; //track if player input is valid
 //	bool playAgain = false;
+//	do{
+	cout << "!!!WELCOME TO RPS SIMULATOR!!!" << endl;//greet player
+	//Main Menu (will be more useful for future iterations of the game)
+	do{
+		cout << "Enter [s] to start a new game or [q] to quit the program: " << flush;
+		cin >> choice;
+		switch (tolower(choice)) {//make case insensitive
+			case 's':  validInput = true;
+					   startGame(); //set runGame true
+					   break;
 
+			case 'q':  validInput = true;
+					   quitGame(); //set runGame false
+					   break;
 
-		cout << "Welcome to RPS Simulator." << endl;
-		do{
-			cout << "Enter [s] to start a new game or [q] to quit the program: " << flush;
-			cin >> choice;
-			switch (tolower(choice)) {//make case insensitive
-				case 's':  validInput = true;
-						   startGame(); //set runGame true
-						   break;
-
-				case 'q':  validInput = true;
-						   quitGame(); //set runGame false
-						   break;
-
-				default: validInput = false;
-						 cout << "Invalid Input. Please enter another choice." << endl;
-						 break;
-				}
-		}while(!validInput);//repeat message if input is invalid
-
-		while(runGame && round <= totalRounds)
-		{
-			cout << "\nROUND " << round << "__________________________________________________________________________________" << endl;
-
-			choice = requestPlayerHand();
-			//check for any special requests, like quitting, helping, restarting..
-			switch (tolower(choice)) { //make case insensitive
-			case 'q':	cout << "Quitting the game..." << endl;
-						quitGame();
-						break;
-
-			default: 	displayGameResults();
-						break;
+			default: validInput = false;
+					 cout << "Invalid Input. Please enter another choice." << endl;
+					 break;
 			}
-			round++;
+	}while(!validInput);//repeat message if input is invalid
+
+	//Code for each round
+	while(runGame && round <= totalRounds)//While the player doesn't quit and hasn't completed all the rounds
+	{
+		//Print out the round number
+		cout << "\nROUND " << round << "__________________________________________________________________________________" << endl;
+		//Prompt the player to choose their hand
+		choice = requestPlayerHand();
+		//read the choice to check for any special requests, like quit, help, restart..
+		switch (tolower(choice)) { //make case insensitive
+		case 'q':	cout << "Quitting the game..." << endl;
+					quitGame();
+					break;
+
+		default: 	displayGameResults();
+					break;
 		}
-		if(!runGame && round <= totalRounds)//if player quit the game before it ended
-		{
-			return true;
-		}
-		else if(runGame && round > totalRounds)//if player finished every round without quitting
-		{
-			//TODO post final score and clean up
-			cout << "\nFINAL SCORES______________________________________________________________________________" << endl;
-			int finalHumanScore = humanPlayer->getScore();
-			int finalNPCScore = NPCPlayer->getScore();
-			cout<<"\nYour score: "<< finalHumanScore <<endl;
-			cout<<"NPC score: "<< finalNPCScore <<endl;
+		round++;
+	}
 
-			if(finalHumanScore > finalNPCScore )
-			{
-				cout << "YOU WON THE GAME :) CONGRATULATIONS!" << endl;
-			}
-			else if(finalHumanScore < finalNPCScore )
-			{
-				cout << "YOU LOST THE GAME :( BETTER LUCK NEXT TIME!" << endl;
-			}
-			else if(finalHumanScore == finalNPCScore )
-			{
-				cout << "YOU TIED! WOW, WHAT ARE THE ODDS?" << endl;
-			}
-			return true;
+	//We stopped doing rounds. Why?
+	if(!runGame && round <= totalRounds)//if player quit the game before it ended
+	{
+		return true; //end the game immediately
+	}
+	else if(runGame && round > totalRounds)//if player finished every round without quitting
+	{
+		//Post final score and clean up
+		cout << "\nFINAL SCORES______________________________________________________________________________" << endl;
+		//Collect the scores
+		int finalHumanScore = humanPlayer->getScore();
+		int finalNPCScore = NPCPlayer->getScore();
+		//Print the final scores
+		cout<<"\nYour score: "<< finalHumanScore <<endl;
+		cout<<"NPC score: "<< finalNPCScore <<endl;
+		//Determine who won the game
+		//Possible TODO Make a Judge function that does this instead
+		if(finalHumanScore > finalNPCScore )
+		{
+			cout << "YOU WON THE GAME :) CONGRATULATIONS!" << endl;
 		}
+		else if(finalHumanScore < finalNPCScore )
+		{
+			cout << "YOU LOST THE GAME :( BETTER LUCK NEXT TIME!" << endl;
+		}
+		else if(finalHumanScore == finalNPCScore )
+		{
+			cout << "YOU TIED! WOW, WHAT ARE THE ODDS?" << endl;
+		}
+		return true;
+	}
 //		else
 //		{
 //			//if this else statement is reached, an error occurred. End the program.
@@ -206,6 +223,6 @@ bool Game::Initialization() {
 
 //	}while(playAgain);
 
-	return false;
+	return false; //if we stopped the rounds for any other reason, an error occurred.
 
 }
