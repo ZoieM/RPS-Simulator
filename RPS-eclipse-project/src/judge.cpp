@@ -5,7 +5,7 @@
  *      Author: JieFu
  */
 
-#include "Judge.h"
+#include "judge.h"
 using namespace std;
 
 Judge::Judge()
@@ -13,9 +13,20 @@ Judge::Judge()
 	condition=def;
 }
 
-void Judge::getEvaluation(string human, string npc, Player& humanPlayer, Player& NPCPlayer)
+int Judge::changeScore()
 {
-	condition = def;
+	if (condition==win)
+		return 1;
+	else if (condition==lose)
+		return 2;
+	else if (condition==tie)
+		return 3;
+
+	return 4; //for errors
+}
+
+void Judge::getEvaluation(string human, string npc)
+{
 	if (human=="Paper")
 	{
 		if (npc=="Paper")
@@ -45,19 +56,11 @@ void Judge::getEvaluation(string human, string npc, Player& humanPlayer, Player&
 	}
 
 	if (condition==win)
-	{
-		humanPlayer.incrementScore();
 		cout<<"You win!"<<endl;
-	}
 	else if (condition==lose)
-	{
-		NPCPlayer.incrementScore();
 		cout<<"You lose!"<<endl;
-	}
 	else if (condition==tie)
-	{
 		cout<<"You tie!"<<endl;
-	}
 }
 
 

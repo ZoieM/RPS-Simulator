@@ -18,7 +18,8 @@ class Npc: public Player
 	protected:
 		~Npc();
 	public:
-		void requestHand(char c);//TODO: Fix this function so it doesn't collect a character if it isn't needed
+		void incrementScore(int condition);
+		void requestHand(char c);
 };
 
 

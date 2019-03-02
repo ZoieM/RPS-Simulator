@@ -9,6 +9,12 @@
 #include <cstdlib>
 using namespace std;
 
+void Npc::incrementScore(int condition)
+{
+	if (condition==2)
+		score++;
+}
+
 void Npc::requestHand(char c)
 {
 	int npcChoice = (rand()%3)+1;
