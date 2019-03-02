@@ -15,6 +15,11 @@ int Player::getScore()
 	return score;
 }
 
+void Player::incrementScore()
+{
+		score++;
+}
+
 string Player::getHandString()
 {
 	switch (playerHand)

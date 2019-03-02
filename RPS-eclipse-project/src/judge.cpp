@@ -13,19 +13,7 @@ Judge::Judge()
 	condition=def;
 }
 
-int Judge::changeScore()
-{
-	if (condition==win)
-		return 1;
-	else if (condition==lose)
-		return 2;
-	else if (condition==tie)
-		return 3;
-
-	return 4; //for errors
-}
-
-void Judge::getEvaluation(string human, string npc)
+int Judge::getEvaluation(string human, string npc)
 {
 	if (human=="Paper")
 	{
@@ -56,11 +44,13 @@ void Judge::getEvaluation(string human, string npc)
 	}
 
 	if (condition==win)
-		cout<<"You win!"<<endl;
+		return 1;
 	else if (condition==lose)
-		cout<<"You lose!"<<endl;
+		return 2;
 	else if (condition==tie)
-		cout<<"You tie!"<<endl;
+		return 3;
+
+	return 4; //for errors
 }
 
 

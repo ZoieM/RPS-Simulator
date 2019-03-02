@@ -19,8 +19,7 @@ class Judge
 		evaluation condition;
 	public:
 		Judge();
-		void getEvaluation(string human, string npc);
-		int changeScore ();  //return 1 for human to ++, return 2 for npc to ++, return 3 for tie
+		int getEvaluation(string human, string npc); //return 1 for human win return 2 for npc win, return 3 for tie
 };
 
 

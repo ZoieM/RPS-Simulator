@@ -19,7 +19,6 @@ class Human: public Player
 		~Human();
 	public:
 		void requestHand(char c);
-		void incrementScore(int condition);
 };
 
 

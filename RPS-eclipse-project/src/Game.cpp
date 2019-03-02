@@ -107,9 +107,19 @@ char Game::requestPlayerHand()//TODO change this to get enum
 void Game::displayGameResults()
 {
 	cout << "You chose " << humanPlayer->getHandString() << ", and the computer chose " << NPCPlayer->getHandString() << "." << endl;
-	theJudge->getEvaluation(humanPlayer->getHandString(), NPCPlayer->getHandString());
-	humanPlayer->incrementScore(theJudge->changeScore());
-	NPCPlayer->incrementScore(theJudge->changeScore());
+	switch(theJudge->getEvaluation(humanPlayer->getHandString(), NPCPlayer->getHandString()))
+	{
+	case 1: humanPlayer->incrementScore();//first hand won
+			cout << "You win :)" << endl;
+			break;
+	case 2: NPCPlayer->incrementScore(); //first hand lost
+			cout << "You lose :(" << endl;
+			break;
+	case 3: cout << "You tied!" << endl;
+			break;//tie
+	default:cout << "WARNING: JUDGE EVALUATION ERROR" << endl;
+			break;
+	}
 	cout<<"Your score: "<<humanPlayer->getScore()<<endl;
 	cout<<"NPC score: "<<NPCPlayer->getScore()<<endl;
 	//TODO print result of the round

@@ -18,8 +18,7 @@ class Npc: public Player
 	protected:
 		~Npc();
 	public:
-		void incrementScore(int condition);
-		void requestHand(char c);
+		void requestHand(char c); //member var bool useML will be added later, so this function doesn't have to be random
 };
 
 

@@ -9,14 +9,9 @@
 #include <cstdlib>
 using namespace std;
 
-void Npc::incrementScore(int condition)
-{
-	if (condition==2)
-		score++;
-}
-
 void Npc::requestHand(char c)
 {
+	//char parameter is ignored until ML is implemented
 	int npcChoice = (rand()%3)+1;
 	if (npcChoice==1)
 		playerHand=rock;

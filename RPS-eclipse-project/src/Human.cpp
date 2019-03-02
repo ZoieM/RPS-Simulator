@@ -8,12 +8,6 @@
 #include "Human.h"
 using namespace std;
 
-void Human::incrementScore(int condition)
-{
-	if (condition==1)
-		score++;
-}
-
 void Human::requestHand(char c)
 {
 	char choice=c;
