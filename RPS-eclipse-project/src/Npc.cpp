@@ -19,7 +19,7 @@ Npc::Npc()
 void Npc::requestHand(char c)
 {
 	//Choose a random char for the hand
-	char npcChoice = picker->pick(c);
+	char npcChoice = tolower(picker->pick(c));
 
 	//Update the playerHand, which represents the NPC's choice
 	if (npcChoice=='r')
