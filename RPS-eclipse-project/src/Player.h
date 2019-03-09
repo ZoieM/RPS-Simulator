@@ -16,6 +16,7 @@ class Player
 		Player();
 		int getScore();
 		string getHandString();
+		char getHandChar();
 		virtual void requestHand(char c){};
 		void incrementScore();
 };
