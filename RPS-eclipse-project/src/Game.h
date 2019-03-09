@@ -28,8 +28,8 @@ private:
 	Player *humanPlayer;
 	Player *NPCPlayer;
 	Judge *theJudge;
-	bool runGame;
-	int round; //TODO add support so game will play exactly totalRounds
+	bool runGame;			//track if game has been started or quit
+	int round; 				//track current round
 	void startGame();
 	void quitGame();
 	char requestPlayerHand();

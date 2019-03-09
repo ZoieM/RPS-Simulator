@@ -29,7 +29,7 @@ void Game::startGame()
 	round = 1; //begin with round 1;
 	//TODO explain rules/options to player
 	cout << "\n\nINSTRUCTIONS______________________________________________________________________________" << endl
-		 << "The game is " << totalRounds << " rounds. Every round, chose one option:\n"
+		 << "The game is " << totalRounds << " rounds. Every round, choose one option:\n"
 		 << "[r]\tTo play Rock\n"
 		 << "[p]\tTo play Paper\n"
 		 << "[s]\tTo play Scissors\n"
@@ -39,7 +39,8 @@ void Game::startGame()
 		 << "+ Scissors beats Paper\n"
 		 << "+ Paper beats Rock\n"
 		 << "But, if you both pick the same option, it's a tie and no one wins any points\n"
-		 << "\n\nNOTE: You can quit the game at any time by entering [q] instead of [r], [p], or [s]. Good luck!\n"
+		 << "\nNOTE: Optionally, you can change the NPC mode between random and machine learning by\n using the '-r' and '-m' flags when you enter your hand. The default mode is random.\n"
+		 << "\nNOTE: You can quit the game at any time by entering [q] instead of [r], [p], or [s]. Good luck!\n"
 		 << endl;
 
 	return;
@@ -64,43 +65,77 @@ bool Game::getRunGame() {
 
 char Game::requestPlayerHand()//TODO change this to get enum
 {
+	string input; //for collecting user input
 	char choice = '?';
 	bool validInput = false;
 	hand playerHand = invalid;
 	//TODO prompt player for a character (r, p, s, or q)
 	do{
-	cout << "Enter choice: " << flush;
-	cin >> choice;
-	switch (tolower(choice)) {//make case insensitive
-					case 's':  validInput = true;
-							   playerHand = scissors;
-							   break;
+		cout << "Enter choice: " << flush;
+		getline(cin, input); //put the entire line into input string
 
-					case 'r':  validInput = true;
-							   playerHand = rock;
-							   break;
+		//Check user's hand
+		choice = input[0]; //user's hand is the first character
+		switch (tolower(choice)) {//make case insensitive
+			case 's':  validInput = true;
+					   playerHand = scissors;
+					   break;
 
-					case 'p':  validInput = true;
-							   playerHand = paper;
-							   break;
+			case 'r':  validInput = true;
+					   playerHand = rock;
+					   break;
 
-					case 'q':  validInput = true;
-							   break;
+			case 'p':  validInput = true;
+					   playerHand = paper;
+					   break;
 
-					default: validInput = false;
-							 cout << "Invalid Input. Please enter another choice." << endl;
-							 break;
-					}
+			case 'q':  validInput = true;
+					   break;
+
+			default: validInput = false;
+					 cout << "Invalid Hand. Please enter another choice." << endl;
+					 break;
+		}
+
+		if(input.size()>1) //if input is longer than one character, check for valid flags
+		{
+			input.erase(0, 2); //remove first char and space
+			cout << "Input is "<< input << " . You entered a flag" << endl;
+
+			//Check for other flags in player input, if present
+			if(input[0] == '-')
+			{
+				switch(tolower(input[1]))//make sure the flag character is case insensitive
+				{
+					case 'r': validInput = true;
+							   cout << "Setting NPC mode to Random..." << endl;
+							   //TODO: Add code here to set NPC to random
+							   break;
+					case 'm': validInput = true;
+							   cout << "Setting NPC mode to Machine Learning..." << endl;
+							   //TODO: Add code here to set NPC to ML
+							   break;
+					default:   validInput = false;
+							   cout << "Invalid Flag. Please enter another choice." << endl;
+							   break;
+				}
+			}
+			else
+			{
+				validInput = false;
+				cout << "Invalid Input. Please enter another choice." << endl;
+			}
+		}
 	}while(!validInput);//repeat message if input is invalid
+
+	//Once validated, set the player's hand
 	if(playerHand != invalid)
 	{
 		humanPlayer->requestHand(choice);
 		NPCPlayer->requestHand(choice);//we have to pass a char parameter, but it gets ignored and picks a random value
 
 	}
-	//TODO evaluate character with a switch statement.
-		//If valid char (r, p, or s) create enumerated type and finish round
-		//If invalid, return the character so other request is dealt with.
+
 	return choice;
 }
 
