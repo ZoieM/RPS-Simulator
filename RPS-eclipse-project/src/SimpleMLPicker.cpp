@@ -28,6 +28,7 @@ SimpleMLPicker::SimpleMLPicker()
 
 char SimpleMLPicker::pick(char c)
 {
+	c = toupper(c);
 	char choice;
 	if (c=='I')
 	{
