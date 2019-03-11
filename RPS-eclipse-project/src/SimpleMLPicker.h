@@ -17,7 +17,7 @@ using namespace std;
 class SimpleMLPicker : public PickNPCHand {
 public:
 	SimpleMLPicker();
-	virtual ~SimpleMLPicker();
+	~SimpleMLPicker();
 	char pick(char c);
 private:
 	char compute();        //predict human next move, and provide corresponding npc move
@@ -38,7 +38,6 @@ private:
 	ofstream exportdata;
 };
 
-};
 
 #endif /* SIMPLEMLPICKER_H_ */
 

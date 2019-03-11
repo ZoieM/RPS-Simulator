@@ -113,8 +113,8 @@ void SimpleMLPicker::updatequeue()
 		queue[1]=queue[3];
 		queue[2]=queue[4];
 		queue.erase(2,2);
-		queue.push_back(human_previous);
 		queue.push_back(npc_previous);
+		queue.push_back(human_previous);
 	}
 	cout<<queue<<endl;
 }

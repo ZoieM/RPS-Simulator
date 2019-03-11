@@ -10,7 +10,7 @@
 
 class PickNPCHand {
 public:
-		virtual char pick(char c);
+		virtual char pick(char c) = 0;
 };
 
 #endif /* PICKNPCHAND_H_ */

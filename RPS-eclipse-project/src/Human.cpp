@@ -38,4 +38,8 @@ void Human::requestHand(char c)
 	}
 }
 
+bool Human::changePicker(char c){
+	return false;
+}
+
 

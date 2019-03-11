@@ -10,6 +10,11 @@ Player::Player()
 	playerHand=start;
 }
 
+Player::~Player()
+{
+	//blank
+}
+
 int Player::getScore()
 {
 	return score;

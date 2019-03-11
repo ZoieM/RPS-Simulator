@@ -16,7 +16,7 @@ PickNPCHandFactory::~PickNPCHandFactory() {
 	// TODO Auto-generated destructor stub
 }
 
-static PickNPCHand *PickNPCHandFactory::make_picker(char which)
+PickNPCHand *PickNPCHandFactory::make_picker(char which)
 {
 	if (which == 'm')
     {

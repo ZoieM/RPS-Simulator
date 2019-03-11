@@ -13,7 +13,7 @@
 class RandomPicker : public PickNPCHand {
 public:
 	RandomPicker();
-	virtual ~RandomPicker();
+	~RandomPicker();
 	char pick(char c);
 };
 

@@ -109,11 +109,11 @@ char Game::requestPlayerHand()//TODO change this to get enum
 				{
 					case 'r': validInput = true;
 							   cout << "Setting NPC mode to Random..." << endl;
-							   //TODO: Add code here to set NPC to random
+							   NPCPlayer->changePicker('r');
 							   break;
 					case 'm': validInput = true;
 							   cout << "Setting NPC mode to Machine Learning..." << endl;
-							   //TODO: Add code here to set NPC to ML
+							   NPCPlayer->changePicker('m');
 							   break;
 					default:   validInput = false;
 							   cout << "Invalid Flag. Please enter another choice." << endl;

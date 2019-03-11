@@ -30,7 +30,7 @@ char RandomPicker::pick(char c)
 	{
 		return 'p';
 	}
-	else if (npcChoice==3)
+	else //if (npcChoice==3)
 	{
 		return 's';
 	}

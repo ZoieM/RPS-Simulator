@@ -4,6 +4,7 @@
 #include <string>
 using namespace std;
 
+
 class Player
 {
 	protected:
@@ -11,14 +12,15 @@ class Player
 		int score;
 		string displayHand;
 		hand playerHand;
-		~Player();
 	public:
 		Player();
+		~Player();
 		int getScore();
 		string getHandString();
 		char getHandChar();
 		virtual void requestHand(char c){};
 		void incrementScore();
+		virtual bool changePicker(char c){};
 };
 
 #endif

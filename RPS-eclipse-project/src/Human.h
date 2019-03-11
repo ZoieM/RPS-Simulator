@@ -19,6 +19,7 @@ class Human: public Player
 		~Human();
 	public:
 		void requestHand(char c);
+		bool changePicker(char c);
 };
 
 
