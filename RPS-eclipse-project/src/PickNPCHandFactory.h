@@ -14,8 +14,8 @@
 
 class PickNPCHandFactory {
 public:
-	PickNPCHandFactory();
-	virtual ~PickNPCHandFactory();
+	//PickNPCHandFactory();
+	//virtual ~PickNPCHandFactory();   //not needed
 	static PickNPCHand* make_picker(char which);
 };
 

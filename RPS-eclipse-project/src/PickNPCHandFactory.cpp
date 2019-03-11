@@ -7,14 +7,6 @@
 
 #include "PickNPCHandFactory.h"
 
-PickNPCHandFactory::PickNPCHandFactory() {
-	// TODO Auto-generated constructor stub
-
-}
-
-PickNPCHandFactory::~PickNPCHandFactory() {
-	// TODO Auto-generated destructor stub
-}
 
 PickNPCHand *PickNPCHandFactory::make_picker(char which)
 {
