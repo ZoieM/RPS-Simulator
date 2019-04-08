@@ -15,7 +15,6 @@
 #include "judge.h"
 using namespace std;
 
-const int totalRounds = 20;
 enum hand { rock, paper, scissors, invalid };
 
 class Game {
@@ -30,10 +29,12 @@ private:
 	Judge *theJudge;
 	bool runGame;			//track if game has been started or quit
 	int round; 				//track current round
+	int totalRounds;
 	void startGame();
 	void quitGame();
 	char requestPlayerHand();
 	void displayGameResults();
+	bool setTotalRounds(int rounds);
 };
 
 #endif /* GAME_H_ */
