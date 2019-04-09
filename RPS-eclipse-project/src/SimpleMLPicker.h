@@ -19,6 +19,7 @@ public:
 	SimpleMLPicker();
 	~SimpleMLPicker();
 	char pick(char c);
+	char prediction();
 private:
 	char compute();        //predict human next move, and provide corresponding npc move
 	void updatedatabase(); //update the databse.txt
@@ -30,6 +31,7 @@ private:
 	int queuelength;
 	char human_previous;
 	char npc_previous;
+	char human_prediction;
 	//these two are for filling out the database.txt
 	char choice[3]={'P', 'R', 'S'};
 	int count;

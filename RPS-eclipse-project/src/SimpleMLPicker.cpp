@@ -19,6 +19,7 @@ SimpleMLPicker::SimpleMLPicker()
 	count=0;
 	human_previous='P';
 	npc_previous='P';
+	human_prediction='x';
 	importdata.open("database.txt");
 	exportdata.open("database.txt");
 	if (importdata.fail()) cerr<< "Error opening file[i]"<<endl;
@@ -47,6 +48,11 @@ char SimpleMLPicker::pick(char c)
 	return choice;
 }
 
+char SimpleMLPicker::prediction()
+{
+	return human_prediction;
+}
+
 char SimpleMLPicker::compute()
 {
 	char choice='x';
@@ -65,9 +71,9 @@ char SimpleMLPicker::compute()
 		else if (temp==comb2) importdata>>rcount;
 		else if (temp==comb3) importdata>>scount;
 	}
-	if ((pcount>rcount)&&(pcount>scount)) choice='S';
-	else if ((rcount>pcount)&&(rcount>scount)) choice='P';
-	else if ((scount>pcount)&&(scount>rcount)) choice='R';
+	if ((pcount>rcount)&&(pcount>scount)) {choice='S'; human_prediction='P';}
+	else if ((rcount>pcount)&&(rcount>scount)) {choice='P'; human_prediction='R';}
+	else if ((scount>pcount)&&(scount>rcount)) {choice='R'; human_prediction='S';}
 	else choice=random();
 	importdata.close();
 	return choice;

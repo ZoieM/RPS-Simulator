@@ -4,6 +4,7 @@ void ButtonPanel::init()
 {
     wxSizer *sizer = new wxBoxSizer(wxVERTICAL);
 
+    //*************************The button panel*********************
     wxPanel *button_panel = new wxPanel(this, wxID_ANY);
     wxSizer *button_sizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -29,11 +30,12 @@ void ButtonPanel::init()
     button_sizer->Add(scissors_button, 0, 0, 0);
     button_panel->SetSizer(button_sizer);
 
+    //******************************The Text panel********************
     wxPanel *chosen_panel = new wxPanel(this, wxID_ANY);
     wxSizer *chosen_sizer = new wxGridSizer(2, 0, 5);
 
     wxStaticText *chosen_text = new wxStaticText(chosen_panel, wxID_ANY,
-                                                 "Chosen object:");
+                                                 "Human Chooses:");
     button_chosen_text = new wxStaticText(chosen_panel, wxID_ANY, "");
     button_chosen_text->SetFont(button_chosen_text->GetFont().Larger());
     chosen_sizer->Add(chosen_text, 0, wxALIGN_RIGHT, 0);
