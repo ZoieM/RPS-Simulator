@@ -20,6 +20,7 @@ public:
 	~SimpleMLPicker();
 	char pick(char c);
 	char prediction();
+	void cleardatabase();
 private:
 	char compute();        //predict human next move, and provide corresponding npc move
 	void updatedatabase(); //update the databse.txt

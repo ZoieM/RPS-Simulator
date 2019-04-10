@@ -18,5 +18,7 @@ enum { ROCK, PAPER, SCISSORS, NONE };
  */
 wxString choice_to_wxString(Choice choice);
 wxString int_to_wxString(int num);
+char choice_to_char(Choice choice);
+wxString char_to_wxString(char choice);
 
 #endif /* CHOICE_H_ */

@@ -17,13 +17,18 @@ SimpleMLPicker::SimpleMLPicker()
 {
 	queuelength=0;
 	count=0;
-	human_previous='P';
-	npc_previous='P';
-	human_prediction='x';
+	human_previous='X';
+	npc_previous='X';
+	human_prediction='X';
 	importdata.open("database.txt");
 	exportdata.open("database.txt");
 	if (importdata.fail()) cerr<< "Error opening file[i]"<<endl;
 	if (exportdata.fail()) cerr<< "Error opening file[e"<<endl;
+	filldatabase();
+}
+
+void SimpleMLPicker::cleardatabase()
+{
 	filldatabase();
 }
 
@@ -74,7 +79,7 @@ char SimpleMLPicker::compute()
 	if ((pcount>rcount)&&(pcount>scount)) {choice='S'; human_prediction='P';}
 	else if ((rcount>pcount)&&(rcount>scount)) {choice='P'; human_prediction='R';}
 	else if ((scount>pcount)&&(scount>rcount)) {choice='R'; human_prediction='S';}
-	else choice=random();
+	else {choice=random(); human_prediction='X';}
 	importdata.close();
 	return choice;
 }

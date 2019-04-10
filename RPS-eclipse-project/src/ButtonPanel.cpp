@@ -131,8 +131,14 @@ void ButtonPanel::on_scissors(wxCommandEvent& event)
 void ButtonPanel::update_text(const Choice choice)
 {
     button_chosen_text->SetLabelText(choice_to_wxString(choice));
-    predicted->SetLabelText(choice_to_wxString(choice));
-    chooses->SetLabelText(choice_to_wxString(choice));
+
+    //predicted->SetLabelText(char_to_wxString(ML.prediction()));
+    //chooses->SetLabelText(char_to_wxString(ML.pick(choice_to_char(choice))));
+    char temp=ML.pick(choice_to_char(choice));
+    chooses->SetLabelText(char_to_wxString(temp));
+    char temp2=ML.prediction();
+    predicted->SetLabelText(char_to_wxString(temp2));
+
     num++;
     round_num->SetLabelText(int_to_wxString(num));
 }

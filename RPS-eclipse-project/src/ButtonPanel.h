@@ -3,6 +3,7 @@
 
 #include "ButtonDemo.h"
 #include "Choice.h"
+#include "SimpleMLPicker.h"
 
 /**
  * The button panel of the application frame.
@@ -42,6 +43,7 @@ private:
     wxStaticText *round_num;
     wxStaticText *predicted;
     wxStaticText *chooses;
+    SimpleMLPicker ML;
     int num;
 
     /**
