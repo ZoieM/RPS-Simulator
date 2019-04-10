@@ -10,3 +10,8 @@ wxString choice_to_wxString(Choice choice)
         default:       return "none";
     }
 }
+
+wxString int_to_wxString(int num)
+{
+	return to_string(num);
+}

@@ -2,6 +2,8 @@
 #define CHOICE_H_
 
 #include "wx/wx.h"
+#include <string>
+using namespace std;
 
 // Choice represented by int.
 typedef int Choice;
@@ -15,5 +17,6 @@ enum { ROCK, PAPER, SCISSORS, NONE };
  * @return the wxString.
  */
 wxString choice_to_wxString(Choice choice);
+wxString int_to_wxString(int num);
 
 #endif /* CHOICE_H_ */
