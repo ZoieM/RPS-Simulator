@@ -40,6 +40,8 @@ public:
 private:
     wxStaticText *button_chosen_text;
     wxStaticText *round_num;
+    wxStaticText *predicted;
+    wxStaticText *chooses;
     int num;
 
     /**
@@ -51,8 +53,7 @@ private:
      * Update the displayed button choice object.
      * @param choice the chosen object.
      */
-    void update_button_choice_text(const Choice choice);
-    void update_round_num (void);
+    void update_text (const Choice choice);
 };
 
 #endif /* BUTTONPANEL_H_ */
