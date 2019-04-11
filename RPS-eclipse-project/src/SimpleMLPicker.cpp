@@ -69,6 +69,7 @@ char SimpleMLPicker::compute()
 	importdata.open("database.txt");
 	if (importdata.fail()) cerr<<"Error opening file in compute"<<endl;
 	importdata.seekg(0);
+	cout<<"comb1: "<<comb1<<"comb2: "<<comb2<<"comb3: "<<comb3<<endl;
 	while (!importdata.eof())
 	{
 		importdata>>temp;
@@ -76,11 +77,13 @@ char SimpleMLPicker::compute()
 		else if (temp==comb2) importdata>>rcount;
 		else if (temp==comb3) importdata>>scount;
 	}
+	cout<<"pcount: "<<pcount<<"rcount: "<<rcount<<"scount: "<<scount<<endl;
 	if ((pcount>rcount)&&(pcount>scount)) {choice='S'; human_prediction='P';}
 	else if ((rcount>pcount)&&(rcount>scount)) {choice='P'; human_prediction='R';}
 	else if ((scount>pcount)&&(scount>rcount)) {choice='R'; human_prediction='S';}
 	else {choice=random(); human_prediction='X';}
 	importdata.close();
+	cout<<human_prediction<<endl;
 	return choice;
 }
 
