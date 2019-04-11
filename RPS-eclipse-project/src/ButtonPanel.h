@@ -50,12 +50,14 @@ private:
     wxStaticText *npc_wins;
     wxStaticText *tie_wins;
     SimpleMLPicker ML;
-    int num;
+    int current_round;
     int human_score;
     int npc_score;
     int tie_score;
     char human;
     char npc;
+    int total_rounds;
+    bool human_wins_game;
 
     /**
      * Initialize the panel contents.
