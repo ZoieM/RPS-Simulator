@@ -24,6 +24,7 @@ wxDialog(parent, wxID_ANY, aTitle,
 	wxStaticText *subtitle = new wxStaticText(subtitle_panel, wxID_ANY, wxT("GAME INSTRUCTIONS"));
 	//BEGIN Make subtitle bold and big
 	subtitle->SetFont(subtitle->GetFont().Larger());
+	subtitle->SetFont(subtitle->GetFont().Larger());
 	subtitle->SetFont(subtitle->GetFont().Bold());
 	//END
 
@@ -60,7 +61,7 @@ wxDialog(parent, wxID_ANY, aTitle,
 	body_panel->SetSizer(body_sizer);
 
 	m_itemBoxSizer->Add(subtitle_panel);
-	m_itemBoxSizer->AddSpacer(10);
+	m_itemBoxSizer->AddSpacer(5);
 	m_itemBoxSizer->Add(body_panel);
 	SetSizer(m_itemBoxSizer);
 }
