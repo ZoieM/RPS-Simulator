@@ -66,7 +66,7 @@ private:
      * Update the displayed button choice object.
      * @param choice the chosen object.
      */
-    void update_text (const Choice choice);
+    void play_round (const Choice choice);
 };
 
 #endif /* BUTTONPANEL_H_ */

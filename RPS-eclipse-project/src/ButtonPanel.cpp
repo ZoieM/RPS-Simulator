@@ -200,20 +200,20 @@ void ButtonPanel::init()
 
 void ButtonPanel::on_rock(wxCommandEvent& event)
 {
-    update_text(ROCK);
+    play_round(ROCK);
 }
 
 void ButtonPanel::on_paper(wxCommandEvent& event)
 {
-    update_text(PAPER);
+	play_round(PAPER);
 }
 
 void ButtonPanel::on_scissors(wxCommandEvent& event)
 {
-    update_text(SCISSORS);
+	play_round(SCISSORS);
 }
 
-void ButtonPanel::update_text(const Choice choice)
+void ButtonPanel::play_round(const Choice choice)
 {
     button_chosen_text->SetLabelText(choice_to_wxString(choice));
     npc=ML.pick(choice_to_char(choice));
