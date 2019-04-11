@@ -7,6 +7,10 @@ void ButtonPanel::reset_game()
 	npc_score=0;
 	tie_score=0;
 
+	button_chosen_text->SetLabelText("");
+    chooses->SetLabelText("");
+    predicted->SetLabelText("");
+    winner->SetLabelText("");
     human_wins->SetLabelText(int_to_wxString(human_score));
     npc_wins->SetLabelText(int_to_wxString(npc_score));
     tie_wins->SetLabelText(int_to_wxString(tie_score));
