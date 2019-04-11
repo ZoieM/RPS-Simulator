@@ -13,19 +13,23 @@ wxDialog(parent, wxID_ANY, aTitle,
     wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
 {
 	m_itemBoxSizer = new wxBoxSizer(wxVERTICAL);
-	SetSizer(m_itemBoxSizer);
+
+    wxPanel *subtitle_panel = new wxPanel(this, wxID_ANY);
+    wxSizer *subtitle_sizer = new wxGridSizer(2, 0, 5);
+
+    wxPanel *body_panel = new wxPanel(this, wxID_ANY);
+    wxSizer *body_sizer = new wxGridSizer(2, 0, 5);
 
 	//___SUBTITLE TEXT
-	wxStaticText *subtitle = new wxStaticText(this, wxID_ANY, wxT("GAME INSTRUCTIONS"), wxPoint(-1, -1), wxSize(-1,-1), wxALIGN_CENTRE_HORIZONTAL);
-	//BEGIN Make subtitle bold
-	wxFont font = subtitle->GetFont();
-	font.SetWeight(wxFONTWEIGHT_BOLD);
-	font.SetSymbolicSize(wxFONTSIZE_LARGE);
-	subtitle->SetFont(font);
+	wxStaticText *subtitle = new wxStaticText(subtitle_panel, wxID_ANY, wxT("GAME INSTRUCTIONS"));
+	//BEGIN Make subtitle bold and big
+	subtitle->SetFont(subtitle->GetFont().Larger());
+	subtitle->SetFont(subtitle->GetFont().Bold());
 	//END
 
 	//___BODY TEXT
-	wxStaticText *body = new wxStaticText(this, wxID_ANY, wxT("RPS-Simulator allows one player (you) to play a game\n"
+	wxStaticText *body = new wxStaticText(body_panel, wxID_ANY, wxT(
+			"RPS-Simulator allows one player (you) to play a game\n"
 			"of Rock Paper Scissors against a computer player.\n\n"
 
 			"Every game of RPS-Simulator will have one or more\n"
@@ -47,14 +51,16 @@ wxDialog(parent, wxID_ANY, aTitle,
 
 			"After the winner of the round is revealed, the next\n"
 			"round will begin. After the last rounds, the player\n"
-			"whoever has won the most rounds will win the game."
-	    ), wxPoint(-1, -1), wxSize(-1,-1), wxALIGN_LEFT);
+			"whoever has won the most rounds will win the game."));
 
-// wxEXPAND makes no difference
-m_itemBoxSizer->Add(subtitle, 1, wxEXPAND, 10);	//add subtitle text to sizer
-m_itemBoxSizer->Add(body, 1, wxALIGN_TOP, 10); 		//add body text to sizer
-m_itemBoxSizer->InsertSpacer(1,7);								//add a blank spacer inbetween both text
-Show(this);
-m_itemBoxSizer->SetMinSize(GetSize());
+	subtitle_sizer->Add(subtitle, 0, wxALL, 0);
+	subtitle_panel->SetSizer(subtitle_sizer);
 
+	body_sizer->Add(body, 0, wxALL, 0);
+	body_panel->SetSizer(body_sizer);
+
+	m_itemBoxSizer->Add(subtitle_panel);
+	m_itemBoxSizer->AddSpacer(10);
+	m_itemBoxSizer->Add(body_panel);
+	SetSizer(m_itemBoxSizer);
 }
