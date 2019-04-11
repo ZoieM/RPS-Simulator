@@ -38,6 +38,8 @@ public:
      */
     void on_scissors(wxCommandEvent& event);
 
+    void reset_game();
+
 private:
     wxStaticText *button_chosen_text;
     wxStaticText *round_num;

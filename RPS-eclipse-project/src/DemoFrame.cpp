@@ -62,12 +62,13 @@ void DemoFrame::init_sizer()
 
 void DemoFrame::on_new(wxCommandEvent& WXUNUSED(event))
 {
-    wxMessageBox(wxString::Format(
+	button_panel->reset_game();
+    /*wxMessageBox(wxString::Format(
                         "Put code here to start a new game."
                     ),
                     "New Game Placeholder",
                     wxOK | wxICON_INFORMATION,
-                    this);
+                    this);*/
 }
 void DemoFrame::on_about(wxCommandEvent& WXUNUSED(event))
 {

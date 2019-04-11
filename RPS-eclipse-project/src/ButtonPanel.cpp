@@ -1,12 +1,25 @@
 #include "ButtonPanel.h"
 
+void ButtonPanel::reset_game()
+{
+	num=0;
+	human_score=0;
+	npc_score=0;
+	tie_score=0;
+
+    human_wins->SetLabelText(int_to_wxString(human_score));
+    npc_wins->SetLabelText(int_to_wxString(npc_score));
+    tie_wins->SetLabelText(int_to_wxString(tie_score));
+    round_num->SetLabelText(int_to_wxString(num));
+}
+
 void ButtonPanel::init()
 {
 	num=0;
 	human_score=0;
 	npc_score=0;
 	tie_score=0;
-	ML.cleardatabase();
+	//ML.cleardatabase(); //ML should get smarted even when player restarts
     wxSizer *sizer = new wxBoxSizer(wxVERTICAL);
 
     //******************************The Round Panel****************
