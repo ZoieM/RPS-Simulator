@@ -29,8 +29,22 @@ wxString char_to_wxString(char choice)
 	case 'R': return "Rock";
 	case 'P': return "Paper";
 	case 'S': return "Scissors";
-	case 'X': return "Unknown";
+	default: return "Unknown";
 	}
+}
+
+bool human_win (char human, char npc)
+{
+	if ((human=='R') && (npc=='S')) return true;
+	else if ((human=='P') && (npc=='R')) return true;
+	else if ((human=='S') && (npc=='P')) return true;
+	else return false;
+}
+
+bool tie (char human, char npc)
+{
+	if (human==npc) return true;
+	else return false;
 }
 
 wxString int_to_wxString(int num)

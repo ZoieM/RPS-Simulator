@@ -43,8 +43,17 @@ private:
     wxStaticText *round_num;
     wxStaticText *predicted;
     wxStaticText *chooses;
+    wxStaticText *winner;
+    wxStaticText *human_wins;
+    wxStaticText *npc_wins;
+    wxStaticText *tie_wins;
     SimpleMLPicker ML;
     int num;
+    int human_score;
+    int npc_score;
+    int tie_score;
+    char human;
+    char npc;
 
     /**
      * Initialize the panel contents.

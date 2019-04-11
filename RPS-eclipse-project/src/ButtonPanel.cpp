@@ -3,6 +3,10 @@
 void ButtonPanel::init()
 {
 	num=0;
+	human_score=0;
+	npc_score=0;
+	tie_score=0;
+	ML.cleardatabase();
     wxSizer *sizer = new wxBoxSizer(wxVERTICAL);
 
     //******************************The Round Panel****************
@@ -12,7 +16,7 @@ void ButtonPanel::init()
     wxStaticText *round_text = new wxStaticText(round_panel, wxID_ANY, "Round: ");
     round_text->SetFont(round_text->GetFont().Larger());
     round_text->SetFont(round_text->GetFont().Bold());
-    round_num = new wxStaticText(round_panel, wxID_ANY, "");
+    round_num = new wxStaticText(round_panel, wxID_ANY, "0");
     round_num->SetFont(round_panel->GetFont().Larger());
     round_sizer->Add(round_text, 0, wxALIGN_CENTER, 0);
     round_sizer->Add(round_num, 0, 0, 0);
@@ -94,6 +98,60 @@ void ButtonPanel::init()
     choose_sizer->Add(chooses, 0, 0, 0);
     choose_panel->SetSizer(choose_sizer);
 
+    //*****************************The Winner Panel********************************8
+    wxPanel *winner_panel = new wxPanel(this, wxID_ANY);
+    wxSizer *winner_sizer = new wxGridSizer(2, 0, 5);
+    wxStaticText *the_winner = new wxStaticText(winner_panel, wxID_ANY, "The winner: ");
+    the_winner->SetFont(the_winner->GetFont().Larger());
+    the_winner->SetFont(the_winner->GetFont().Bold());
+    winner = new wxStaticText(winner_panel, wxID_ANY, "");
+    winner->SetFont(winner->GetFont().Larger());
+    winner_sizer->Add(the_winner, 0, wxALIGN_CENTER, 0);
+    winner_sizer->Add(winner, 0, 0, 0);
+    winner_panel->SetSizer(winner_sizer);
+
+    //******************************The Statistics panel*****************
+    wxPanel *statistics_panel = new wxPanel(this, wxID_ANY);
+    wxSizer *statistics_sizer = new wxGridSizer(2, 0, 5);
+    wxStaticText *statistics = new wxStaticText(statistics_panel, wxID_ANY, "Statistics");
+    statistics->SetFont(statistics->GetFont().Larger());
+    statistics->SetFont(statistics->GetFont().Bold());
+    statistics_sizer->Add(statistics, 0, wxALIGN_CENTER, 0);
+    statistics_panel->SetSizer(statistics_sizer);
+
+    //*****************************The human score Panel********************************8
+    wxPanel *humanscore_panel = new wxPanel(this, wxID_ANY);
+    wxSizer *humanscore_sizer = new wxGridSizer(2, 0, 5);
+    wxStaticText *humanscore = new wxStaticText(humanscore_panel, wxID_ANY, "Human wins: ");
+    humanscore->SetFont(humanscore->GetFont().Larger());
+    human_wins = new wxStaticText(humanscore_panel, wxID_ANY, "0");
+    human_wins->SetFont(human_wins->GetFont().Larger());
+    humanscore_sizer->Add(humanscore, 0, wxALIGN_CENTER, 0);
+    humanscore_sizer->Add(human_wins, 0, 0, 0);
+    humanscore_panel->SetSizer(humanscore_sizer);
+
+    //*****************************The npc score Panel********************************8
+    wxPanel *npcscore_panel = new wxPanel(this, wxID_ANY);
+    wxSizer *npcscore_sizer = new wxGridSizer(2, 0, 5);
+    wxStaticText *npcscore = new wxStaticText(npcscore_panel, wxID_ANY, "NPC wins: ");
+    npcscore->SetFont(npcscore->GetFont().Larger());
+    npc_wins = new wxStaticText(npcscore_panel, wxID_ANY, "0");
+    npc_wins->SetFont(npc_wins->GetFont().Larger());
+    npcscore_sizer->Add(npcscore, 0, wxALIGN_CENTER, 0);
+    npcscore_sizer->Add(npc_wins, 0, 0, 0);
+    npcscore_panel->SetSizer(npcscore_sizer);
+
+    //*****************************The npc score Panel********************************8
+    wxPanel *tiescore_panel = new wxPanel(this, wxID_ANY);
+    wxSizer *tiescore_sizer = new wxGridSizer(2, 0, 5);
+    wxStaticText *tiescore = new wxStaticText(tiescore_panel, wxID_ANY, "Tie: ");
+    tiescore->SetFont(tiescore->GetFont().Larger());
+    tie_wins = new wxStaticText(tiescore_panel, wxID_ANY, "0");
+    tie_wins->SetFont(tie_wins->GetFont().Larger());
+    tiescore_sizer->Add(tiescore, 0, wxALIGN_CENTER, 0);
+    tiescore_sizer->Add(tie_wins, 0, 0, 0);
+    tiescore_panel->SetSizer(tiescore_sizer);
+
     //*****************************Which Panel Goes first****************
     sizer->Add(round_panel, 0, wxALIGN_CENTER, 0);
     sizer->AddSpacer(20);
@@ -108,7 +166,17 @@ void ButtonPanel::init()
     sizer->Add(predict_panel, 0, wxALIGN_CENTER, 0);
     sizer->AddSpacer(0);
     sizer->Add(choose_panel, 0, wxALIGN_CENTER, 0);
-    sizer->AddSpacer(50);
+    sizer->AddSpacer(20);
+    sizer->Add(winner_panel, 0, wxALIGN_CENTER, 0);
+    sizer->AddSpacer(20);
+    sizer->Add(statistics_panel, 0, wxALIGN_CENTER, 0);
+    sizer->AddSpacer(20);
+    sizer->Add(humanscore_panel, 0, wxALIGN_CENTER, 0);
+    sizer->AddSpacer(0);
+    sizer->Add(npcscore_panel, 0, wxALIGN_CENTER, 0);
+    sizer->AddSpacer(0);
+    sizer->Add(tiescore_panel, 0, wxALIGN_CENTER, 0);
+    sizer->AddSpacer(100);
 
     SetSizer(sizer);
 }
@@ -131,9 +199,20 @@ void ButtonPanel::on_scissors(wxCommandEvent& event)
 void ButtonPanel::update_text(const Choice choice)
 {
     button_chosen_text->SetLabelText(choice_to_wxString(choice));
-    chooses->SetLabelText(char_to_wxString(ML.pick(choice_to_char(choice))));
+    npc=ML.pick(choice_to_char(choice));
+    human=choice_to_char(choice);
+    chooses->SetLabelText(char_to_wxString(npc));
     predicted->SetLabelText(char_to_wxString(ML.prediction()));
 
+    if (human_win(human, npc)) {winner->SetLabelText("Human Wins"); human_score++;}
+    else
+    {
+    	if (tie(human, npc)) {winner->SetLabelText("Tie"); tie_score++;}
+    	else {winner->SetLabelText("NPC Wins"); npc_score++;}
+    }
+    human_wins->SetLabelText(int_to_wxString(human_score));
+    npc_wins->SetLabelText(int_to_wxString(npc_score));
+    tie_wins->SetLabelText(int_to_wxString(tie_score));
     num++;
     round_num->SetLabelText(int_to_wxString(num));
 }

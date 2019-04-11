@@ -20,5 +20,7 @@ wxString choice_to_wxString(Choice choice);
 wxString int_to_wxString(int num);
 char choice_to_char(Choice choice);
 wxString char_to_wxString(char choice);
+bool human_win (char human, char npc);
+bool tie (char human, char npc);
 
 #endif /* CHOICE_H_ */
