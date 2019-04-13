@@ -38,6 +38,11 @@ public:
      */
     void on_quit(wxCommandEvent& event);
 
+    //Prompt the total_rounds per game from user
+    void on_rounds(wxCommandEvent& event);
+
+    void prompt_total_rounds();
+
 private:
     // The event table that maps events to their handlers.
     wxDECLARE_EVENT_TABLE();
@@ -65,6 +70,7 @@ enum
 {
     RPS_Quit  = wxID_EXIT,
     RPS_About = wxID_ABOUT,
+	RPS_Rounds = wxID_PROPERTIES,
 	RPS_New   = wxID_NEW //appended
 };
 

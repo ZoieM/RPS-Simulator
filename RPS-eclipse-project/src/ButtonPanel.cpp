@@ -1,4 +1,5 @@
 #include "ButtonPanel.h"
+#include "DemoFrame.h"
 
 void ButtonPanel::reset_game()
 {
@@ -14,7 +15,25 @@ void ButtonPanel::reset_game()
     human_wins->SetLabelText(int_to_wxString(human_score));
     npc_wins->SetLabelText(int_to_wxString(npc_score));
     tie_wins->SetLabelText(int_to_wxString(tie_score));
-    round_num->SetLabelText(int_to_wxString(current_round));
+    round_num->SetLabelText("0 of "+int_to_wxString(total_rounds));
+}
+bool ButtonPanel::set_total_rounds(int rounds)
+{
+	if(rounds<1 || rounds>100)
+	{
+		return false;
+	}
+	else
+	{
+		total_rounds = rounds;
+		round_num->SetLabelText("0 of "+int_to_wxString(total_rounds));
+		return true;
+	}
+}
+int ButtonPanel::get_total_rounds()
+{
+	int x = total_rounds;
+	return x;
 }
 
 void ButtonPanel::init()
@@ -34,7 +53,7 @@ void ButtonPanel::init()
     wxStaticText *round_text = new wxStaticText(round_panel, wxID_ANY, "Round: ");
     round_text->SetFont(round_text->GetFont().Larger());
     round_text->SetFont(round_text->GetFont().Bold());
-    round_num = new wxStaticText(round_panel, wxID_ANY, "0");
+    round_num = new wxStaticText(round_panel, wxID_ANY, "0 of "+int_to_wxString(total_rounds));
     round_num->SetFont(round_panel->GetFont().Larger());
     round_sizer->Add(round_text, 0, wxALIGN_CENTER, 0);
     round_sizer->Add(round_num, 0, 0, 0);
@@ -232,7 +251,7 @@ void ButtonPanel::play_round(const Choice choice)
     npc_wins->SetLabelText(int_to_wxString(npc_score));
     tie_wins->SetLabelText(int_to_wxString(tie_score));
     if (!tie(human, npc)){current_round++;}
-    round_num->SetLabelText(int_to_wxString(current_round));
+    round_num->SetLabelText(int_to_wxString(current_round)+" of "+int_to_wxString(total_rounds));
 
     if (current_round >= total_rounds){
     	std::cout<<"end game"<<endl;
@@ -243,7 +262,31 @@ void ButtonPanel::play_round(const Choice choice)
     		human_wins_game = false;
     	}
     	//end game
+    	wxString end_game_text;
+    	if(human_wins_game)
+    	{
+    		end_game_text = "Congratulations!\nYou won the game!";
+    	}
+    	else
+    	{
+    		end_game_text = "You lost the game!\nBetter luck next time.";
+    	}
+
+    	//see dialogs.cpp line 849 for reference
+    	 wxMessageDialog dialog(this,
+    	                           end_game_text,
+    	                           "Game Over",
+    	                           wxCENTER | wxOK );
+
+    	dialog.SetOKLabel("Play Again");//THIS MAY NOT WORK ON ALL PLATFORMS
+    	switch ( dialog.ShowModal() )
+    	    {
+    	        case wxID_OK:
+    	        	reset_game();
+    	        	break;
+
+    	        default:
+    	            wxLogError(wxT("Unexpected wxMessageDialog return code!"));
+    	    }
     }
-
-
 }

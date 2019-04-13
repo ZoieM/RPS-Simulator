@@ -5,6 +5,7 @@
 #include "Choice.h"
 #include "SimpleMLPicker.h"
 
+
 /**
  * The button panel of the application frame.
  */
@@ -39,6 +40,8 @@ public:
     void on_scissors(wxCommandEvent& event);
 
     void reset_game();
+    bool set_total_rounds(int rounds);
+    int get_total_rounds();
 
 private:
     wxStaticText *button_chosen_text;

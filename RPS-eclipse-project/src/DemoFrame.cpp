@@ -1,10 +1,12 @@
 #include "DemoFrame.h"
+#include "wx/numdlg.h"
 
 // The event table.
 wxBEGIN_EVENT_TABLE(DemoFrame, wxFrame)
     EVT_MENU(RPS_Quit,  DemoFrame::on_quit)
     EVT_MENU(RPS_About, DemoFrame::on_about)
     EVT_MENU(RPS_New, DemoFrame::on_new)
+	EVT_MENU(RPS_Rounds, DemoFrame::on_rounds)
 wxEND_EVENT_TABLE()
 
 const int SIDE_MARGINS = 40;
@@ -32,6 +34,7 @@ void DemoFrame::init()
 
     wxSize size = GetBestSize();
     SetMinClientSize(size);
+    prompt_total_rounds();
 }
 
 void DemoFrame::init_menu_bar()
@@ -42,7 +45,7 @@ void DemoFrame::init_menu_bar()
 
     wxMenu *helpMenu = new wxMenu;
     helpMenu->Append(RPS_About, "&About\tF2",   "Show about dialog");
-
+    helpMenu->Append(RPS_Rounds, "&Total Rounds\tF3",   "Change number of rounds");
 
     wxMenuBar *menuBar = new wxMenuBar();
     menuBar->Append(fileMenu, "&File");
@@ -69,6 +72,39 @@ void DemoFrame::on_new(wxCommandEvent& WXUNUSED(event))
                     "New Game Placeholder",
                     wxOK | wxICON_INFORMATION,
                     this);*/
+
+}
+void DemoFrame::prompt_total_rounds()
+{
+	long desired_rounds = -1;
+	wxString msg;
+	int icon;
+
+	while( desired_rounds < 1 || desired_rounds > 100)
+	{
+		desired_rounds = wxGetNumberFromUser(
+			wxT("How many rounds do you want to play this game?\n"),
+			wxT("Rounds:"),
+			wxT("Welcome to RPS-Simulator"),
+			static_cast<long>(button_panel->get_total_rounds()),
+			1,
+			100,
+			this);
+
+		if ( desired_rounds < 1 || desired_rounds > 100)//invalid num
+		{
+			msg = wxT("Invalid number of rounds.\nPlease enter a number between 1 and 100.");
+			icon = wxICON_HAND;
+		}
+		else
+		{
+			int new_rounds = static_cast<int>(desired_rounds);
+			button_panel->set_total_rounds(new_rounds);
+			msg.Printf(wxT("The game will have %i rounds."), new_rounds );
+			icon = wxICON_INFORMATION;
+		}
+		wxMessageBox(msg, wxT("Number of Rounds Per Game"), wxOK | icon, this);
+	}
 }
 void DemoFrame::on_about(wxCommandEvent& WXUNUSED(event))
 {
@@ -76,49 +112,11 @@ void DemoFrame::on_about(wxCommandEvent& WXUNUSED(event))
         d->ShowModal();
         d->Destroy();
 }
-/*void DemoFrame::on_about(wxCommandEvent& WXUNUSED(event))
+void DemoFrame::on_rounds(wxCommandEvent& WXUNUSED(event))
 {
-    wxMessageBox(wxString::Format(
-//                    "This is a button demo\n"
-//                    "built with %s\n"
-//                    "and running under %s.",
-//                    wxVERSION_STRING,
-//                    wxGetOsDescription()
-
-
-    				"                                    GAME INSTRUCTIONS                                    \n\n"
-
-    				"RPS-Simulator allows one player (you) to play a game\n"
-    				"of Rock Paper Scissors against a computer player.\n\n\n"
-
-
-    				"Every game of RPS-Simulator will have one or more\n"
-    		    	"rounds (20 rounds by default). At the beginning of\n"
-    				"every round, you and the computer player will each\n"
-    				"pick a hand: Rock, Paper, or Scissors. Then, both\n"
-    				"hands will be revealed and compared to see who wins.\n\n\n"
-
-
-    				"The rules to win a round of Rock Paper Scissors are\n"
-    				"as follows:\n\n"
-
-    					"\t- Rock crushes Scissors. \t(Rock wins against Scissors).\n"
-    					"\t- Scissors cut Paper. 	\t(Scissors win against Paper).\n"
-    					"\t- Paper covers Rock. 	\t(Paper wins against Rock).\n\n"
-
-    				"But, if both players pick the same hand, they tie, so no\n"
-    				"one will win the round.\n\n\n"
-
-
-    				"After the winner of the round is revealed, the next\n"
-    				"round will begin. After the last rounds, the player\n"
-    				"who has won the most rounds will win the game."
-                ),
-                "About RPS-Simulator",
-                wxOK | wxICON_INFORMATION,
-                this);
-}*/
-
+	this->prompt_total_rounds();
+	button_panel->reset_game(); //don't let player change number of rounds in middle of game
+}
 void DemoFrame::on_quit(wxCommandEvent& WXUNUSED(event))
 {
     Close(true);  // true is to force the frame to close
