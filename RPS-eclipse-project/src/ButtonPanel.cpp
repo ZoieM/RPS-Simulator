@@ -15,7 +15,7 @@ void ButtonPanel::reset_game()
     human_wins->SetLabelText(int_to_wxString(human_score));
     npc_wins->SetLabelText(int_to_wxString(npc_score));
     tie_wins->SetLabelText(int_to_wxString(tie_score));
-    round_num->SetLabelText("0 of "+int_to_wxString(total_rounds));
+    round_num->SetLabelText("0/"+int_to_wxString(total_rounds));
 }
 bool ButtonPanel::set_total_rounds(int rounds)
 {
@@ -26,7 +26,8 @@ bool ButtonPanel::set_total_rounds(int rounds)
 	else
 	{
 		total_rounds = rounds;
-		round_num->SetLabelText("0 of "+int_to_wxString(total_rounds));
+		round_num->SetLabelText("0/"+int_to_wxString(total_rounds));
+	    round_panel->SetSizer(round_sizer);
 		return true;
 	}
 }
@@ -47,13 +48,13 @@ void ButtonPanel::init()
     wxSizer *sizer = new wxBoxSizer(wxVERTICAL);
 
     //******************************The Round Panel****************
-    wxPanel *round_panel = new wxPanel(this, wxID_ANY);
-    wxSizer *round_sizer = new wxGridSizer(2, 0, 5);
+    round_panel = new wxPanel(this, wxID_ANY);
+    round_sizer = new wxGridSizer(2, 0, 5);
 
     wxStaticText *round_text = new wxStaticText(round_panel, wxID_ANY, "Round: ");
     round_text->SetFont(round_text->GetFont().Larger());
     round_text->SetFont(round_text->GetFont().Bold());
-    round_num = new wxStaticText(round_panel, wxID_ANY, "0 of "+int_to_wxString(total_rounds));
+    round_num = new wxStaticText(round_panel, wxID_ANY, "0/"+int_to_wxString(total_rounds));
     round_num->SetFont(round_panel->GetFont().Larger());
     round_sizer->Add(round_text, 0, wxALIGN_CENTER, 0);
     round_sizer->Add(round_num, 0, 0, 0);
@@ -251,7 +252,8 @@ void ButtonPanel::play_round(const Choice choice)
     npc_wins->SetLabelText(int_to_wxString(npc_score));
     tie_wins->SetLabelText(int_to_wxString(tie_score));
     if (!tie(human, npc)){current_round++;}
-    round_num->SetLabelText(int_to_wxString(current_round)+" of "+int_to_wxString(total_rounds));
+    round_num->SetLabelText(int_to_wxString(current_round)+"/"+int_to_wxString(total_rounds));
+    round_panel->SetSizer(round_sizer);
 
     if (current_round >= total_rounds){
     	std::cout<<"end game"<<endl;

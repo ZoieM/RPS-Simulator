@@ -61,6 +61,8 @@ private:
     char npc;
     int total_rounds;
     bool human_wins_game;
+    wxPanel *round_panel;
+    wxSizer *round_sizer;
 
     /**
      * Initialize the panel contents.

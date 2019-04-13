@@ -14,18 +14,18 @@ wxDialog(parent, wxID_ANY, aTitle,
 {
 	m_itemBoxSizer = new wxBoxSizer(wxVERTICAL);
 
-    wxPanel *subtitle_panel = new wxPanel(this, wxID_ANY);
-    wxSizer *subtitle_sizer = new wxGridSizer(2, 0, 5);
+//    wxPanel *subtitle_panel = new wxPanel(this, wxID_ANY);
+//    wxSizer *subtitle_sizer = new wxGridSizer(2, 0, 5);
 
     wxPanel *body_panel = new wxPanel(this, wxID_ANY);
     wxSizer *body_sizer = new wxGridSizer(2, 0, 5);
 
 	//___SUBTITLE TEXT
-	wxStaticText *subtitle = new wxStaticText(subtitle_panel, wxID_ANY, wxT("GAME INSTRUCTIONS"));
-	//BEGIN Make subtitle bold and big
-	subtitle->SetFont(subtitle->GetFont().Larger());
-	subtitle->SetFont(subtitle->GetFont().Larger());
-	subtitle->SetFont(subtitle->GetFont().Bold());
+//	wxStaticText *subtitle = new wxStaticText(subtitle_panel, wxID_ANY, wxT("GAME INSTRUCTIONS"));
+//	//BEGIN Make subtitle bold and big
+//	subtitle->SetFont(subtitle->GetFont().Larger());
+//	subtitle->SetFont(subtitle->GetFont().Larger());
+//	subtitle->SetFont(subtitle->GetFont().Bold());
 	//END
 
 	//___BODY TEXT
@@ -54,14 +54,14 @@ wxDialog(parent, wxID_ANY, aTitle,
 			"round will begin. After the last rounds, the player\n"
 			"whoever has won the most rounds will win the game."));
 
-	subtitle_sizer->Add(subtitle, 0, wxALL, 0);
-	subtitle_panel->SetSizer(subtitle_sizer);
+//	subtitle_sizer->Add(subtitle, 0, wxALL, 0);
+//	subtitle_panel->SetSizer(subtitle_sizer);
 
 	body_sizer->Add(body, 0, wxALL, 0);
 	body_panel->SetSizer(body_sizer);
 
-	m_itemBoxSizer->Add(subtitle_panel);
-	m_itemBoxSizer->AddSpacer(5);
+//	m_itemBoxSizer->Add(subtitle_panel);
+//	m_itemBoxSizer->AddSpacer(5);
 	m_itemBoxSizer->Add(body_panel);
 	SetSizer(m_itemBoxSizer);
 }

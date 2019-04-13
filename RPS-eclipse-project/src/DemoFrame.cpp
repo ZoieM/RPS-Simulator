@@ -44,7 +44,7 @@ void DemoFrame::init_menu_bar()
     fileMenu->Append(RPS_Quit,  "E&xit\tAlt-X", "Quit program");
 
     wxMenu *helpMenu = new wxMenu;
-    helpMenu->Append(RPS_About, "&About\tF2",   "Show about dialog");
+    helpMenu->Append(RPS_About, "&About\tF2",   "View instructions");
     helpMenu->Append(RPS_Rounds, "&Total Rounds\tF3",   "Change number of rounds");
 
     wxMenuBar *menuBar = new wxMenuBar();
@@ -108,9 +108,37 @@ void DemoFrame::prompt_total_rounds()
 }
 void DemoFrame::on_about(wxCommandEvent& WXUNUSED(event))
 {
-    	wxDialog *d = new AboutDialog(NULL, "About RPS-Simulator", wxSize(-1, -1));
-        d->ShowModal();
-        d->Destroy();
+    wxMessageBox(wxString::Format(
+    				"RPS-Simulator allows one player (you) to play a game\n"
+    				"of Rock Paper Scissors against a computer player.\n\n\n"
+
+
+    				"Every game of RPS-Simulator will have one or more\n"
+    		    	"rounds (20 rounds by default). At the beginning of\n"
+    				"every round, you and the computer player will each\n"
+    				"pick a hand: Rock, Paper, or Scissors. Then, both\n"
+    				"hands will be revealed and compared to see who wins.\n\n\n"
+
+
+    				"The rules to win a round of Rock Paper Scissors are\n"
+    				"as follows:\n\n"
+
+    					"\t- Rock crushes Scissors. \t(Rock wins against Scissors).\n"
+    					"\t- Scissors cut Paper. 	\t(Scissors win against Paper).\n"
+    					"\t- Paper covers Rock. 	\t(Paper wins against Rock).\n\n"
+
+    				"But, if both players pick the same hand, they tie, so\n"
+    				"both players will pick again. The round doesn't end until\n"
+    				"one player wins.\n\n\n"
+
+
+    				"After the winner of the round is revealed, the next\n"
+    				"round will begin. After the last rounds, the player\n"
+    				"who has won the most rounds will win the game."
+                ),
+                "RPS-Simulator Instructions",
+                wxOK | wxICON_INFORMATION,
+                this);
 }
 void DemoFrame::on_rounds(wxCommandEvent& WXUNUSED(event))
 {
