@@ -9,11 +9,14 @@
 
 #include "Condiment_Decorator.h"
 #include "Drink.h"
+#include <string>
+
+using namespace std;
 
 class Sugar : public Condiment_Decorator {
     public:
-    Sugar(Drink* drink);
-    virtual std::string drink_to_string();
+    Sugar();
+    virtual string drink_to_string();
 };
 
 #endif

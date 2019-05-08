@@ -8,11 +8,14 @@
 #define Oolong_Tea_H
 
 #include "Drink.h"
+#include <string>
+
+using namespace std;
 
 class Oolong_Tea: public Drink {
     public:
     Oolong_Tea();
-    virtual std::string drink_to_string();
+    virtual string drink_to_string();
 };
 
 #endif

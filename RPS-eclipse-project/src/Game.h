@@ -8,7 +8,7 @@
 #ifndef GAME_H_
 #define GAME_H_
 
-#include "State_Machine/Order_State_Machine.cpp"
+#include "State_Machine/Order_State_Machine.h"
 
 const int ORDERS_PER_GAME = 3;
 

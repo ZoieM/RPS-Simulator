@@ -7,7 +7,7 @@
 
 #include "Customer.h"
 
-Customer::Customer()
+void Customer::Init()
 {
 	current_order.description="";
 	difficulty=easy;

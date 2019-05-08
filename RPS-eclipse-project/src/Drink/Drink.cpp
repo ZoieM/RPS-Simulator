@@ -7,7 +7,7 @@
 #include "Drink.h"
 
 Drink::Drink() {
-    description = "Drink choice: ";
+    description = "";
 }
 
 string Drink::drink_to_string() {
@@ -31,7 +31,7 @@ bool Drink::has_tea(Type_Of_Tea tea_check)
 	else return false;
 }
 
-bool Drink::has_topping(Type_Of_Topping topping_check, int number_of_toppings_check){
+bool Drink::has_topping(Type_Of_Topping *topping_check, int number_of_toppings_check){
 	if (number_of_toppings_check!=number_of_toppings) return false;
 	for (int i=0; i<number_of_toppings; i++)
 	{

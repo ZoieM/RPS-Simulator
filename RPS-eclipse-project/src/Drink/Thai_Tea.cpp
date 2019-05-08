@@ -7,7 +7,7 @@
 #include "Thai_Tea.h"
 
 Thai_Tea::Thai_Tea() {
-    description = "Thai Tea";
+    description = description + "Thai Tea, ";
 }
 
 std::string Thai_Tea::drink_to_string() {

@@ -11,9 +11,6 @@
 #include <string>
 #include <iostream>
 #include "../Drink/Drink.h"
-#include <stdio.h>
-#include <stdlib.h>
-
 using namespace std;
 
 enum Difficulty
@@ -25,14 +22,10 @@ enum Difficulty
 class Customer
 {
 private:
+	Drink current_order; //should be Drink instead of string
 	Difficulty difficulty;
 public:
-<<<<<<< HEAD
-	Customer(); //constructor
-=======
-	Drink current_order; //should be Drink instead of string
 	void Init();
->>>>>>> a4715bba1e897dc8aa45bafd7ee4950a46359cb9
 	virtual Drink get_order();  //should be Drink instead of string
 	void set_difficulty(Difficulty easy_or_hard);
 };

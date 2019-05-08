@@ -8,8 +8,8 @@
 #ifndef STATE_MACHINE_ORDER_STATE_MACHINE_H_
 #define STATE_MACHINE_ORDER_STATE_MACHINE_H_
 
-#include "../Drink/Drink.cpp"
-#include "../Customer/Customer.cpp"
+//#include "../Drink/Drink.cpp"
+//#include "../Customer/Customer.cpp"
 #include "State.h"
 
 class Order_State_Machine{
@@ -18,8 +18,8 @@ public:
 	Order_State_Machine();
 	virtual ~Order_State_Machine();
 
-	void init(Difficulty difficulty);
-	void change_difficulty(Difficulty difficulty);
+	void init(/*Difficulty difficulty*/);
+//	void change_difficulty(Difficulty difficulty);
 
 	//Possible States for State Machine
 	State* No_Order_State;

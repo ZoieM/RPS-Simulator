@@ -10,10 +10,12 @@
 using namespace std;
 
 
-Milk::Milk(Drink* drink)
-: Condiment_Decorator(drink) {};
+Milk::Milk()
+{
+	description+="Milk ";
+}
 
 string Milk::drink_to_string() {
-    return pDrink->drink_to_string() + " & milk";
+    return description;
 }
 

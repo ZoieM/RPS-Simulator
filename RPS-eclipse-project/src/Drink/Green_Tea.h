@@ -8,11 +8,14 @@
 #define GREEN_TEA_H
 
 #include "Drink.h"
+#include <string>
+
+using namespace std;
 
 class Green_Tea: public Drink {
     public:
     Green_Tea();
-    virtual std::string drink_to_string();
+    string drink_to_string();
 };
 
 #endif

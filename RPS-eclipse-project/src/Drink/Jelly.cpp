@@ -10,10 +10,12 @@
 using namespace std;
 
 
-Jelly::Jelly(Drink* drink)
-: Condiment_Decorator(drink) {};
+Jelly::Jelly()
+{
+	description+="Jelly ";
+}
 
 string Jelly::drink_to_string() {
-    return pDrink->drink_to_string() + " & jelly";
+    return description;
 }
 

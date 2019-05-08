@@ -9,9 +9,11 @@
 
 using namespace std;
 
-Condiment_Decorator::Condiment_Decorator(Drink* drink)
-: pDrink(drink) {};
+Condiment_Decorator::Condiment_Decorator()
+{
+
+}
 
 string Condiment_Decorator::drink_to_string() {
-    return pDrink->drink_to_string();
+    return description;
 }

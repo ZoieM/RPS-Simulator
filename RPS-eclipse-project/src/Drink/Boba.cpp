@@ -6,11 +6,16 @@
 
 #include "Boba.h"
 #include "Condiment_Decorator.h"
+#include <string>
 
-Boba::Boba(Drink* drink)
-: Condiment_Decorator(drink) {};
+using namespace std;
 
-std::string Boba::drink_to_string() {
-    return pDrink->drink_to_string() + " & boba";
+Boba::Boba()
+{
+	description+="Boba ";
+}
+
+string Boba::drink_to_string() {
+    return description;
 }
 
