@@ -27,7 +27,7 @@ Order_State_Machine::~Order_State_Machine() {
 	delete Order_Ready_State;
 }
 
-void Order_State_Machine::init(/*Difficulty difficulty*/){
+void Order_State_Machine::init(){
 	No_Order_State = new ::No_Order_State(this);
 	Needs_Cup_State = new ::Needs_Cup_State(this);
 	Needs_Tea_State = new ::Needs_Tea_State(this);
@@ -36,13 +36,13 @@ void Order_State_Machine::init(/*Difficulty difficulty*/){
 
 	current_state = No_Order_State;
 
-	//customer.set_difficulty(difficulty);
+	customer.set_difficulty(easy);
 
 	//drink objects will be defined in other states
 }
 
-//void Order_State_Machine::change_difficulty(Difficulty difficulty)
-//{
-//	//this->customer.set_difficulty(difficulty);
-//}
+void Order_State_Machine::change_difficulty(Difficulty difficulty)
+{
+	this->customer.set_difficulty(difficulty);
+}
 

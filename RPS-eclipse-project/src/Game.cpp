@@ -7,12 +7,14 @@
 
 #include "Game.h"
 #include <iostream>
+#include <string>
 
 Game::Game() {
 	// TODO Auto-generated constructor stub
 	this->total_orders = ORDERS_PER_GAME;
 	this->current_order = 1; //begin at order #1
 	this->score = 0; //score begins at 0%
+	this->Order_SM.init();
 }
 
 Game::~Game() {
@@ -63,6 +65,26 @@ void Game::display_title()
 void Game::query_difficulty()
 {
 	//TODO: Query user for difficulty, and update Order_SM.customer
+	std::string input;
+	bool input_is_valid = false;
+	do{
+		std::cout << "Select Difficulty ([E]asy or [H]ard): " << std::flush;
+		std::cin  >> input;
+
+		switch(tolower(input[0]))
+		{
+			case 'e': 	input_is_valid = true;
+						this->Order_SM.change_difficulty(easy);
+						std::cout << "Beginning an Easy Game..." << std::endl;
+						break;
+			case 'h':	input_is_valid = true;
+						this->Order_SM.change_difficulty(hard);
+						std::cout << "Beginning a Hard Game..." << std::endl;
+						break;
+			default:	std::cout << "Invalid Input! Enter [e] or [h]." << std::endl;
+		}
+	}while(!input_is_valid);
+
 	return;
 }
 
