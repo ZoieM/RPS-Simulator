@@ -6,11 +6,13 @@
  */
 
 #include <iostream>
-using namespace std;
+#include "Game.h"
 
 int main()
 {
-	cout << "Hello World!" << endl;
+	Game Boba_Mania;
+	Boba_Mania.init_game();
+
 	return 0;
 }
 
