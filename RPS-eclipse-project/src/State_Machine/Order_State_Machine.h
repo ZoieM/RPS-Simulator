@@ -12,6 +12,7 @@
 //#include "../Customer/Customer.cpp"
 #include "State.h"
 #include "../Customer/Customer.h"
+#include "../Drink/Drink.h"
 
 class Order_State_Machine{
 public:
@@ -34,8 +35,8 @@ public:
 
 	//Member Variables
 	Customer customer;	 //The customer produces drink orders. Simple or Complex depending on difficulty.
- 	//Drink ideal_drink; 	 //The drink the customer ordered. Defined after No_Order_State.
-	//Drink current_drink; //The drink the user has made or is still making.
+ 	Drink ideal_drink; 	 //The drink the customer ordered. Defined after No_Order_State.
+	Drink current_drink; //The drink the user has made or is still making.
 	int mistakes = 0;
 };
 
