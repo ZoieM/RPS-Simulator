@@ -13,7 +13,44 @@
 class hardCustomer: public Customer
 {
 public:
-	Drink get_order(){return current_order;};
+	Drink get_order()
+	{
+		// this section is for handling toppings
+		int random = rand()%5 + 1; //random range from 1 - 5 toppings
+		current_order.number_of_toppings=random;
+		for (int i=0; i<random; i++)
+		{
+			random = rand()%4;
+			switch (random)
+			{
+			case 0:
+				current_order.toppings[i]=Boba; break;
+			case 1:
+				current_order.toppings[i]=Jelly; break;
+			case 2:
+				current_order.toppings[i]=Milk; break;
+			case 3:
+				current_order.toppings[i]=Ice; break;
+			case 4:
+				current_order.toppings[i]=Sugar; break;
+			}
+		}
+
+		//this section is for handling type of tea
+		random = rand()%4;
+		switch (random)
+		{
+		case 0:
+			current_order.tea=Green_Tea; break;
+		case 1:
+			current_order.tea=Black_Tea; break;
+		case 2:
+			current_order.tea=Oolong_Tea; break;
+		case 3:
+			current_order.tea=Thai_Tea; break;
+		}
+		return current_order;
+	};
 };
 
 

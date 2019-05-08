@@ -5,7 +5,7 @@
  *      Author: chinjiec
  */
 
-#include "../../eclipse-project/src/Customer.h"
+#include "Customer.h"
 
 void Customer::Init()
 {
