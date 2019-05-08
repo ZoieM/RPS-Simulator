@@ -7,9 +7,9 @@
 
 #include "Order_Ready_State.h"
 
-Order_Ready_State::Order_Ready_State() {
+Order_Ready_State::Order_Ready_State(Order_State_Machine *osm) {
 	// TODO Auto-generated constructor stub
-
+	order_sm = osm;
 }
 
 Order_Ready_State::~Order_Ready_State() {

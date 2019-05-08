@@ -8,10 +8,14 @@
 #ifndef STATE_MACHINE_NO_ORDER_STATE_H_
 #define STATE_MACHINE_NO_ORDER_STATE_H_
 
-class No_Order_State {
+#include "State.h"
+#include "Order_State_Machine.h"
+
+class No_Order_State : public State{
 public:
-	No_Order_State();
+	No_Order_State(Order_State_Machine *osm);
 	virtual ~No_Order_State();
+	Order_State_Machine *order_sm;
 };
 
 #endif /* STATE_MACHINE_NO_ORDER_STATE_H_ */

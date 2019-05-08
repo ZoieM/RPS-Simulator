@@ -7,9 +7,9 @@
 
 #include "No_Order_State.h"
 
-No_Order_State::No_Order_State() {
+No_Order_State::No_Order_State(Order_State_Machine *osm) {
 	// TODO Auto-generated constructor stub
-
+	order_sm = osm;
 }
 
 No_Order_State::~No_Order_State() {

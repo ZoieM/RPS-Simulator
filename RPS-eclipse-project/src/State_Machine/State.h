@@ -5,13 +5,15 @@
  *      Author: zoie
  */
 
-#ifndef STATE_H_
-#define STATE_H_
+#ifndef STATE_MACHINE_STATE_H_
+#define STATE_MACHINE_STATE_H_
 
-class State {
-public:
-	State();
-	virtual ~State();
+class State
+{
+	public:
+		State(){};
+		virtual ~State(){};
+		//virtual void take_order() = 0;
 };
 
-#endif /* STATE_H_ */
+#endif /* STATE_MACHINE_STATE_H_ */

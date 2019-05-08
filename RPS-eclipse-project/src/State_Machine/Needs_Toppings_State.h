@@ -8,10 +8,14 @@
 #ifndef STATE_MACHINE_NEEDS_TOPPINGS_STATE_H_
 #define STATE_MACHINE_NEEDS_TOPPINGS_STATE_H_
 
-class Needs_Toppings_State {
+#include "State.h"
+#include "Order_State_Machine.h"
+
+class Needs_Toppings_State : public State{
 public:
-	Needs_Toppings_State();
+	Needs_Toppings_State(Order_State_Machine *osm);
 	virtual ~Needs_Toppings_State();
+	Order_State_Machine *order_sm;
 };
 
 #endif /* STATE_MACHINE_NEEDS_TOPPINGS_STATE_H_ */

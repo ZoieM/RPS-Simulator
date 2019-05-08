@@ -5,9 +5,9 @@
  *      Author: chinjiec
  */
 
-#include "../../eclipse-project/src/Customer.h"
+#include "Customer.h"
 
-void Customer::Init()
+Customer::Customer()
 {
 	current_order.description="";
 	difficulty=easy;

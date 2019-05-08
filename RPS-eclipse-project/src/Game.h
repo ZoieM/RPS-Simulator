@@ -8,6 +8,8 @@
 #ifndef GAME_H_
 #define GAME_H_
 
+#include "State_Machine/Order_State_Machine.cpp"
+
 const int ORDERS_PER_GAME = 3;
 
 class Game{
@@ -23,10 +25,10 @@ class Game{
 		void display_score();
 		bool query_play_again();
 		//member variables
-		//Order_State_Machine Order_SM; //TODO: Define Order_State_Machine class
-		int total_orders = ORDERS_PER_GAME;
-		int current_order = 1; //begin at order #1
-		double score = 0; //score begins at 0%
+		Order_State_Machine Order_SM;
+		int total_orders;
+		int current_order; //begin at order #1
+		double score; //score begins at 0%
 };
 
 #endif /* GAME_H_ */
