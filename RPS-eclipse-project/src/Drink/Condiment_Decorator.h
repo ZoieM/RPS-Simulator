@@ -10,11 +10,13 @@
 #include "Drink.h"
 #include <iostream>
 
+using namespace std;
+
 class Condiment_Decorator : public Drink {
     public:
     Drink* pDrink;
     Condiment_Decorator(Drink* drink);
-    virtual std::string drink_to_string();
+    virtual string drink_to_string();
 };
 
 #endif

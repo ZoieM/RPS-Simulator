@@ -6,10 +6,13 @@
 
 #include "Green_Tea.h"
 
+using namespace std;
+
+
 Green_Tea::Green_Tea() {
     description = "Green Tea";
 }
 
-std::string Green_Tea::drink_to_string() {
+string Green_Tea::drink_to_string() {
     return description;
 }
