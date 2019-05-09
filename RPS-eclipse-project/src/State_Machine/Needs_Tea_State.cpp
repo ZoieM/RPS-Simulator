@@ -34,7 +34,7 @@ void Needs_Tea_State::brew_tea(std::string tea)
 	//Make the string lowercase
 	for(std::string::size_type i = 0; i < tea.length(); i++ )
 	{
-		tolower(tea[i]);
+		tea[i]=tolower(tea[i]);
 	}
 	//Look for a valid tea type. If valid, brew it.
 	if(tea.find("green tea") != std::string::npos)
