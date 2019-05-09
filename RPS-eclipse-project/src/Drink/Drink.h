@@ -24,7 +24,7 @@ class Drink {
 	Type_Of_Tea tea;
 	Type_Of_Topping toppings[MAX_TOPPINGS];
     Drink();
-    virtual ~Drink();
+    virtual ~Drink(){};
     bool same_drinks(Drink other_drink); //judge to determine whether the choices are correct
     bool has_tea(Type_Of_Tea tea_check); //check whether it has the corresponding kind of tea
     bool has_topping(Type_Of_Topping *topping_check, int number_of_toppings_check); //check whether corresponding toppings

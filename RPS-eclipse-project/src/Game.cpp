@@ -13,7 +13,10 @@ Game::Game() {
 	// TODO Auto-generated constructor stub
 	this->total_orders = ORDERS_PER_GAME;
 	this->current_order = 1; //begin at order #1
-	this->score = 0; //score begins at 0%
+	for(int i=0; i < ORDERS_PER_GAME; i++)
+	{
+		this->score[i] = 0; //score begins at 0%
+	}
 	this->Order_SM.init();
 }
 
