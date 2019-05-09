@@ -24,5 +24,8 @@ void No_Order_State::take_order()
 	cout << "Here is what the customer asked for:\n"
 		 << order_sm->ideal_drink.drink_to_string()
 		 << endl;
+
+	//For demo, only brew tea, then order up
+	order_sm->current_state = order_sm->Needs_Tea_State;
 }
 

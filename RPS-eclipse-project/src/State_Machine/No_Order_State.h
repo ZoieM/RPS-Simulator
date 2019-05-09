@@ -17,6 +17,7 @@ public:
 	virtual ~No_Order_State();
 	Order_State_Machine *order_sm;
 	void take_order();
+	void brew_tea(std::string tea);
 };
 
 #endif /* STATE_MACHINE_NO_ORDER_STATE_H_ */

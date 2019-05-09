@@ -21,3 +21,8 @@ void Order_Ready_State::take_order()
 	cout << "ERROR: You need to give the customer their drink before you can take another order."
 		 << endl;
 }
+
+void Order_Ready_State::brew_tea(char tea)
+{
+
+}
