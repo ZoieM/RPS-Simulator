@@ -37,42 +37,42 @@ void Needs_Tea_State::brew_tea(std::string tea)
 		tolower(tea[i]);
 	}
 	//Look for a valid tea type. If valid, brew it.
-	if(tea.find("green tea"))
+	if(tea.find("green tea") != std::string::npos)
 	{
 		valid_tea = true;
 		if(order_sm->current_drink != NULL) //Delete the tea if one already existed
 		{
-			delete order_sm->current_drink;
+			//delete order_sm->current_drink;
 		}
 		order_sm->current_drink = new Green_Tea;
 		std::cout << "You brewed a cup of Green Tea." << endl;
 	}
-	else if(tea.find("oolong tea"))
+	else if(tea.find("oolong tea") != std::string::npos)
 	{
 		valid_tea = true;
 		if(order_sm->current_drink != NULL) //Delete the tea if one already existed
 		{
-			delete order_sm->current_drink;
+			//delete order_sm->current_drink;
 		}
 		order_sm->current_drink = new Oolong_Tea;
 		std::cout << "You brewed a cup of Oolong Tea." << endl;
 	}
-	else if(tea.find("black tea"))
+	else if(tea.find("black tea") != std::string::npos)
 	{
 		valid_tea = true;
 		if(order_sm->current_drink != NULL) //Delete the tea if one already existed
 		{
-			delete order_sm->current_drink;
+			//delete order_sm->current_drink;
 		}
 		order_sm->current_drink = new Black_Tea;
 		std::cout << "You brewed a cup of Black Tea." << endl;
 	}
-	else if(tea.find("thai tea"))
+	else if(tea.find("thai tea") != std::string::npos)
 	{
 		valid_tea = true;
 		if(order_sm->current_drink != NULL) //Delete the tea if one already existed
 		{
-			delete order_sm->current_drink;
+			//delete order_sm->current_drink;
 		}
 		order_sm->current_drink = new Thai_Tea;
 		std::cout << "You brewed a cup of Thai Tea." << endl;
