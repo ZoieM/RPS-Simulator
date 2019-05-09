@@ -8,7 +8,7 @@
 #ifndef ECLIPSE_PROJECT_SRC_EASYCUSTOMER_H_
 #define ECLIPSE_PROJECT_SRC_EASYCUSTOMER_H_
 
-#include "../../eclipse-project/src/Customer.h"
+#include "Customer.h"
 
 class easyCustomer: public Customer
 {
