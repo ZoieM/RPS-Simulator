@@ -121,7 +121,7 @@ void Game::run_game()
 
 		do{
 			//Collect an action
-			std::cout 	<< "Possible Actions: \n"
+			std::cout 	<< "\nPossible Actions: \n"
 						<< "\t- [T]ake an order \n"
 //						<< "\t- [G]rab a cup \n"
 						<< "\t- [B]rew tea \n"
