@@ -24,9 +24,9 @@ public:
 
 	//Possible States for State Machine
 	State* No_Order_State;
-	State* Needs_Cup_State;
+	//State* Needs_Cup_State;
 	State* Needs_Tea_State;
-	State* Needs_Toppings_State;
+	//State* Needs_Toppings_State;
 	State* Order_Ready_State;
 
 	//Current State of State Machine

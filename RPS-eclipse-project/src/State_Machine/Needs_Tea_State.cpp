@@ -24,4 +24,7 @@ void Needs_Tea_State::take_order()
 		 << order_sm->ideal_drink.drink_to_string()
 		 << endl;
 }
+void Needs_Tea_State::brew_tea(std::string tea)
+{
 
+}

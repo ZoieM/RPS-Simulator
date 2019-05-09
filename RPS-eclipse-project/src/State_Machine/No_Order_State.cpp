@@ -29,3 +29,8 @@ void No_Order_State::take_order()
 	order_sm->current_state = order_sm->Needs_Tea_State;
 }
 
+void No_Order_State::brew_tea(std::string tea)
+{
+
+}
+

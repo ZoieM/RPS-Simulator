@@ -22,7 +22,7 @@ void Order_Ready_State::take_order()
 		 << endl;
 }
 
-void Order_Ready_State::brew_tea(char tea)
+void Order_Ready_State::brew_tea(std::string tea)
 {
 
 }

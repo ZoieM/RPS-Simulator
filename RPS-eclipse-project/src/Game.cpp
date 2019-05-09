@@ -140,7 +140,12 @@ void Game::run_game()
 									this->Order_SM.current_state->brew_tea(input);
 									break;
 
-						default:	std::cout << "Invalid Input! Enter [t], [b], or [o]." << std::endl;
+						case 'o': 	input_is_valid = true;
+															std::cout << "You try to brew some tea." << std::endl;
+															this->Order_SM.current_state->brew_tea(input);
+															break;
+
+						default:	std::cout << "Invalid Input! Enter \"[T]ake Order\", \"[B]rew Tea\", or \"[O]rder Up\". (Enter t, b, or o)." << std::endl;
 									//std::cout << "Invalid Input! Enter [t], [g], [b], [a], or [o]." << std::endl;
 
 					}

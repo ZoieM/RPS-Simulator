@@ -22,17 +22,17 @@ Order_State_Machine::~Order_State_Machine() {
 
 	//delete dynamically created objects
 	delete No_Order_State;
-	delete Needs_Cup_State;
+	//delete Needs_Cup_State;
 	delete Needs_Tea_State;
-	delete Needs_Toppings_State;
+	//delete Needs_Toppings_State;
 	delete Order_Ready_State;
 }
 
 void Order_State_Machine::init(){
 	No_Order_State = new ::No_Order_State(this);
-	Needs_Cup_State = new ::Needs_Cup_State(this);
+	//Needs_Cup_State = new ::Needs_Cup_State(this);
 	Needs_Tea_State = new ::Needs_Tea_State(this);
-	Needs_Toppings_State = new ::Needs_Toppings_State(this);
+	//Needs_Toppings_State = new ::Needs_Toppings_State(this);
 	Order_Ready_State = new ::Order_Ready_State(this);
 
 	current_state = No_Order_State;
