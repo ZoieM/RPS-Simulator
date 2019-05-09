@@ -18,6 +18,7 @@ public:
 	Order_State_Machine *order_sm;
 	void take_order();
 	void brew_tea(std::string tea);
+	void give_to_customer();
 };
 
 #endif /* STATE_MACHINE_ORDER_READY_STATE_H_ */

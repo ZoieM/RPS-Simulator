@@ -21,11 +21,27 @@ Order_State_Machine::~Order_State_Machine() {
 	// TODO Auto-generated destructor stub
 
 	//delete dynamically created objects
-	delete No_Order_State;
+	if(No_Order_State)
+	{
+		delete No_Order_State;
+	}
+
 	//delete Needs_Cup_State;
-	delete Needs_Tea_State;
+	if(Needs_Tea_State)
+	{
+		delete Needs_Tea_State;
+	}
+
 	//delete Needs_Toppings_State;
-	delete Order_Ready_State;
+	if(Order_Ready_State)
+	{
+		delete Order_Ready_State;
+	}
+
+	if(current_drink)
+	{
+		delete current_drink;
+	}
 }
 
 void Order_State_Machine::init(){

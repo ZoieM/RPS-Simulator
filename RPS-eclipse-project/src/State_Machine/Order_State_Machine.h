@@ -35,8 +35,9 @@ public:
 	//Member Variables
 	Customer customer;	 //The customer produces drink orders. Simple or Complex depending on difficulty.
  	Drink ideal_drink; 	 //The drink the customer ordered. Defined after No_Order_State.
-	Drink current_drink; //The drink the user has made or is still making.
+	Drink* current_drink; //The drink the user has made or is still making.
 	int mistakes = 0;
+	bool order_done = false;
 };
 
 #endif /* STATE_MACHINE_ORDER_STATE_MACHINE_H_ */

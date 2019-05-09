@@ -28,7 +28,7 @@ class Game{
 		Order_State_Machine Order_SM;
 		int total_orders;
 		int current_order; //begin at order #1
-		double score; //score begins at 0%
+		double score[ORDERS_PER_GAME]; //score begins at 0%
 };
 
 #endif /* GAME_H_ */

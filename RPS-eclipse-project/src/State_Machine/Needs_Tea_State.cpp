@@ -6,6 +6,10 @@
  */
 
 #include "Needs_Tea_State.h"
+//#include "../Drink/Green_Tea.h"
+//#include "../Drink/Black_Tea.h"
+//#include "../Drink/Thai_Tea.h"
+//#include "../Drink/Oolong_Tea.h"
 
 using namespace std;
 
@@ -26,5 +30,73 @@ void Needs_Tea_State::take_order()
 }
 void Needs_Tea_State::brew_tea(std::string tea)
 {
+	bool valid_tea = false;
+	//Make the string lowercase
+	for(std::string::size_type i = 0; i < tea.length(); i++ )
+	{
+		tolower(tea[i]);
+	}
+	//Look for a valid tea type. If valid, brew it.
+	if(tea.find("green tea"))
+	{
+		valid_tea = true;
+		if(order_sm->current_drink != NULL) //Delete the tea if one already existed
+		{
+			delete order_sm->current_drink;
+		}
+		order_sm->current_drink = new Green_Tea;
+		std::cout << "You brewed a cup of Green Tea." << endl;
+	}
+	else if(tea.find("oolong tea"))
+	{
+		valid_tea = true;
+		if(order_sm->current_drink != NULL) //Delete the tea if one already existed
+		{
+			delete order_sm->current_drink;
+		}
+		order_sm->current_drink = new Oolong_Tea;
+		std::cout << "You brewed a cup of Oolong Tea." << endl;
+	}
+	else if(tea.find("black tea"))
+	{
+		valid_tea = true;
+		if(order_sm->current_drink != NULL) //Delete the tea if one already existed
+		{
+			delete order_sm->current_drink;
+		}
+		order_sm->current_drink = new Black_Tea;
+		std::cout << "You brewed a cup of Black Tea." << endl;
+	}
+	else if(tea.find("thai tea"))
+	{
+		valid_tea = true;
+		if(order_sm->current_drink != NULL) //Delete the tea if one already existed
+		{
+			delete order_sm->current_drink;
+		}
+		order_sm->current_drink = new Thai_Tea;
+		std::cout << "You brewed a cup of Thai Tea." << endl;
+	}
+	else //invalid tea type
+	{
+		cout << "You can't brew that type of tea. Here are the types of teas you can brew:\n"
+			 << "\tGreen Tea\n"
+			 << "\tBlack Tea\n"
+			 << "\tOolong Tea\n"
+			 << "\tThai Tea\n"
+			 << endl;
+	}
 
+	//State Transition
+	if(valid_tea)//If we brewed tea
+	{
+		//For demo, only brew tea, then order up
+		order_sm->current_state = order_sm->Order_Ready_State;
+
+	}
+}
+
+void Needs_Tea_State::give_to_customer()
+{
+	cout << "ERROR: You haven't made any tea yet! Make some tea before giving the customer their order." << endl;
 }

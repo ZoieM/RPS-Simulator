@@ -141,15 +141,37 @@ void Game::run_game()
 									break;
 
 						case 'o': 	input_is_valid = true;
-															std::cout << "You try to brew some tea." << std::endl;
-															this->Order_SM.current_state->brew_tea(input);
-															break;
+									std::cout << "You try to give the customer their order." << std::endl;
+									this->Order_SM.current_state->give_to_customer();
+									break;
 
 						default:	std::cout << "Invalid Input! Enter \"[T]ake Order\", \"[B]rew Tea\", or \"[O]rder Up\". (Enter t, b, or o)." << std::endl;
 									//std::cout << "Invalid Input! Enter [t], [g], [b], [a], or [o]." << std::endl;
 
 					}
 			}while(!input_is_valid);
+
+			//if that action finished an order, move to the next one
+			if(Order_SM.order_done)
+			{
+				//record score
+				if(Order_SM.mistakes >= 3)
+				{
+					this->score[current_order-1] = 0;
+				}
+				else
+				{
+					this->score[current_order-1] = (3-(Order_SM.mistakes))/3;
+				}
+				//reset mistakes
+				Order_SM.mistakes = 0;
+
+				//update round
+				current_order++;
+
+				//lower flag
+				Order_SM.order_done = false;
+			}
 	}
 
 	return;
