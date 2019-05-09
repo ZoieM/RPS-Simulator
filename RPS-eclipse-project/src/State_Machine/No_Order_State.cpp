@@ -16,3 +16,13 @@ No_Order_State::~No_Order_State() {
 	// TODO Auto-generated destructor stub
 }
 
+void No_Order_State::take_order()
+{
+	//Take the customer's order
+	order_sm->ideal_drink = order_sm->customer.get_order();
+	//Tell the user what the customer ordered
+	cout << "Here is what the customer asked for:\n"
+		 << order_sm->ideal_drink.drink_to_string()
+		 << endl;
+}
+

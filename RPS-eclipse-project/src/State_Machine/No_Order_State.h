@@ -16,6 +16,7 @@ public:
 	No_Order_State(Order_State_Machine *osm);
 	virtual ~No_Order_State();
 	Order_State_Machine *order_sm;
+	void take_order();
 };
 
 #endif /* STATE_MACHINE_NO_ORDER_STATE_H_ */

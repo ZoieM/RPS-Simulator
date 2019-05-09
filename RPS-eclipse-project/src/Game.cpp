@@ -74,12 +74,12 @@ void Game::query_difficulty()
 		switch(tolower(input[0]))
 		{
 			case 'e': 	input_is_valid = true;
-						this->Order_SM.change_difficulty(easy);
 						std::cout << "Beginning an Easy Game..." << std::endl;
+						this->Order_SM.customer.set_difficulty(easy);
 						break;
 			case 'h':	input_is_valid = true;
-						this->Order_SM.change_difficulty(hard);
 						std::cout << "Beginning a Hard Game..." << std::endl;
+						this->Order_SM.customer.set_difficulty(hard);
 						break;
 			default:	std::cout << "Invalid Input! Enter [e] or [h]." << std::endl;
 		}
@@ -91,6 +91,35 @@ void Game::query_difficulty()
 void Game::run_game()
 {
 	//TODO: For each order in total_orders, go through all states of Order_SM.
+	while(current_order < total_orders)//Repeat the same cycle for each order.
+	{
+		std::string input;
+		bool input_is_valid = false;
+
+		do{
+			//Collect an action
+			std::cout 	<< "Possible Actions: \n"
+						<< "\t- [T]ake an order \n"
+						<< "\t- [G]rab a cup \n"
+						<< "\t- [B]rew tea \n"
+						<< "\t- [A]dd a topping \n"
+						<< "\t- [O]rder Up! \n"
+						<< "What do you want to do? "
+						<< std::flush;
+			std::getline(cin, input);
+
+			//If the user choose one of the available actions, execute it.
+			switch(tolower(input[0]))
+					{
+						case 't': 	input_is_valid = true;
+									std::cout << "You try to take the customer's order." << std::endl;
+									this->Order_SM.current_state->take_order();
+									break;
+						default:	std::cout << "Invalid Input! Enter [t], [g], [b], [a], or [o]." << std::endl;
+					}
+			}while(!input_is_valid);
+	}
+
 	return;
 }
 

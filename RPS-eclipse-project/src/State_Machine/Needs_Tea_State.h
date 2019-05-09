@@ -16,6 +16,7 @@ public:
 	Needs_Tea_State(Order_State_Machine *osm);
 	virtual ~Needs_Tea_State();
 	Order_State_Machine *order_sm;
+	void take_order();
 };
 
 #endif /* STATE_MACHINE_NEEDS_TEA_STATE_H_ */

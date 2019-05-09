@@ -16,6 +16,7 @@ public:
 	Needs_Toppings_State(Order_State_Machine *osm);
 	virtual ~Needs_Toppings_State();
 	Order_State_Machine *order_sm;
+	void take_order();
 };
 
 #endif /* STATE_MACHINE_NEEDS_TOPPINGS_STATE_H_ */

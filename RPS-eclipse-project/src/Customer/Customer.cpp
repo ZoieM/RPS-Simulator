@@ -6,16 +6,17 @@
  */
 
 #include "Customer.h"
+#include "../Drink/Drink.h"
 
 void Customer::Init()
 {
-	current_order.description="";
+	current_order->description="";
 	difficulty=easy;
 }
 
 Drink Customer::get_order()
 {
-	return current_order;
+	return *current_order;
 }
 
 void Customer::set_difficulty(Difficulty easy_or_hard)

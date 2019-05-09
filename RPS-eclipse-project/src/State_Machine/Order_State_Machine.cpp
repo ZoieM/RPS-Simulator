@@ -11,6 +11,7 @@
 #include "Needs_Tea_State.h"
 #include "Needs_Toppings_State.h"
 #include "Order_Ready_State.h"
+#include "../Customer/Customer.h"
 
 Order_State_Machine::Order_State_Machine(){
 	//see init()
@@ -41,8 +42,8 @@ void Order_State_Machine::init(){
 	//drink objects will be defined in other states
 }
 
-void Order_State_Machine::change_difficulty(Difficulty difficulty)
-{
-	this->customer.set_difficulty(difficulty);
-}
+//void Order_State_Machine::change_difficulty(Difficulty difficulty)
+//{
+//	this->customer.set_difficulty(difficulty);
+//}
 

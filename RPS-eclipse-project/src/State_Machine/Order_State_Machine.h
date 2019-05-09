@@ -12,7 +12,7 @@
 //#include "../Customer/Customer.cpp"
 #include "State.h"
 #include "../Customer/Customer.h"
-#include "../Drink/Drink.h"
+class Drink;
 
 class Order_State_Machine{
 public:
@@ -21,7 +21,6 @@ public:
 	virtual ~Order_State_Machine();
 
 	void init();
-	void change_difficulty(Difficulty difficulty);
 
 	//Possible States for State Machine
 	State* No_Order_State;
