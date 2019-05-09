@@ -113,7 +113,7 @@ void Game::query_difficulty()
 void Game::run_game()
 {
 	//TODO: For each order in total_orders, go through all states of Order_SM.
-	while(current_order < total_orders)//Repeat the same cycle for each order.
+	while(current_order <= total_orders)//Repeat the same cycle for each order.
 	{
 		std::string input;
 		bool input_is_valid = false;
@@ -183,6 +183,13 @@ void Game::run_game()
 void Game::display_score()
 {
 	//TODO: Print "GAME OVER" and the user's final score
+	float sum, grade;
+	for(int i=0; i<ORDERS_PER_GAME; i++)
+	{
+		sum += score[i];
+	}
+	grade = (sum / ORDERS_PER_GAME)*100;
+	cout << "GAME OVER. YOUR SCORE WAS " << grade << "%." << endl;
 	return;
 }
 

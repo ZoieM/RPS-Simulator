@@ -38,10 +38,10 @@ Order_State_Machine::~Order_State_Machine() {
 		delete Order_Ready_State;
 	}
 
-	if(current_drink)
-	{
-		delete current_drink;
-	}
+//	if(current_drink)
+//	{
+//		delete current_drink;
+//	}
 }
 
 void Order_State_Machine::init(){
