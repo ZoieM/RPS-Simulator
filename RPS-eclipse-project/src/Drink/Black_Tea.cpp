@@ -10,6 +10,7 @@ using namespace std;
 
 
 Black_Tea::Black_Tea() {
+	tea=Black;
     description = description + "Black Tea ";
 }
 

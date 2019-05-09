@@ -7,6 +7,7 @@
 #include "Thai_Tea.h"
 
 Thai_Tea::Thai_Tea() {
+	tea=Thai;
     description = description + "Thai Tea ";
 }
 

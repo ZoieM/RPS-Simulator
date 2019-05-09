@@ -7,6 +7,7 @@
 #include "Oolong_Tea.h"
 
 Oolong_Tea::Oolong_Tea() {
+	tea=Oolong;
     description = description + "Oolong Tea ";
 }
 

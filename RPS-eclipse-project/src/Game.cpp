@@ -7,6 +7,7 @@
 
 #include "Game.h"
 #include <iostream>
+#include <iomanip> //setprecision
 #include <string>
 
 Game::Game() {
@@ -164,7 +165,7 @@ void Game::run_game()
 				}
 				else
 				{
-					this->score[current_order-1] = (3-(Order_SM.mistakes))/3;
+					this->score[current_order-1] = (3-(static_cast<double>(Order_SM.mistakes)))/3;
 				}
 				//reset mistakes
 				Order_SM.mistakes = 0;
@@ -189,7 +190,7 @@ void Game::display_score()
 		sum += score[i];
 	}
 	grade = (sum / ORDERS_PER_GAME)*100;
-	cout << "GAME OVER. YOUR SCORE WAS " << grade << "%." << endl;
+	cout << "GAME OVER. YOUR SCORE WAS " << setprecision(0) << fixed << grade << "%." << endl;
 	return;
 }
 
