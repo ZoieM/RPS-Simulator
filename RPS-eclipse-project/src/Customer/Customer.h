@@ -30,6 +30,7 @@ public:
 	void Init();
 	virtual Drink get_order();  //should be Drink instead of string
 	void set_difficulty(Difficulty easy_or_hard);
+	Difficulty return_difficulty ();
 };
 
 

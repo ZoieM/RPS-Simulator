@@ -47,5 +47,10 @@ void Customer::set_difficulty(Difficulty easy_or_hard)
 	else difficulty=hard;
 }
 
+Difficulty Customer::return_difficulty()
+{
+	return difficulty;
+}
+
 
 
