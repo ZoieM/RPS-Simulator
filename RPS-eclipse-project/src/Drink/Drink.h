@@ -13,7 +13,7 @@
 
 using namespace std;
 
-enum Type_Of_Tea { Green_Tea, Black_Tea, Oolong_Tea, Thai_Tea, Undefined };
+enum Type_Of_Tea { Green, Black, Oolong, Thai, Undefined };
 enum Type_Of_Topping { Boba, Jelly, Milk, Ice, Sugar };
 
 class Drink {

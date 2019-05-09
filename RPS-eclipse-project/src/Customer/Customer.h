@@ -11,6 +11,10 @@
 #include <string>
 #include <iostream>
 #include "../Drink/Drink.h"
+#include "../Drink/Green_Tea.h"
+#include "../Drink/Black_Tea.h"
+#include "../Drink/Oolong_Tea.h"
+#include "../Drink/Thai_Tea.h"
 using namespace std;
 
 class Drink; //forward declaration
@@ -24,7 +28,7 @@ enum Difficulty
 class Customer
 {
 private:
-	Drink current_order; //should be Drink instead of string
+	Drink *current_order; //should be Drink instead of string
 	Difficulty difficulty;
 public:
 	void Init();
