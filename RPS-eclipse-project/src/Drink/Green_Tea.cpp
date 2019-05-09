@@ -10,7 +10,7 @@ using namespace std;
 
 
 Green_Tea::Green_Tea() {
-    description = description + "Green Tea, ";
+    description = description + "Green Tea ";
 }
 
 string Green_Tea::drink_to_string() {
