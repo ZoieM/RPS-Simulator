@@ -123,13 +123,14 @@ void Game::run_game()
 			//Collect an action
 			std::cout 	<< "\nPossible Actions: \n"
 						<< "\t- [T]ake an order \n"
-//						<< "\t- [G]rab a cup \n"
+						//<< "\t- [G]rab a cup \n"
 						<< "\t- [B]rew tea \n"
-//						<< "\t- [A]dd a topping \n"
+						//<< "\t- [A]dd a topping \n"
 						<< "\t- [O]rder Up! \n"
 						<< "What do you want to do? "
 						<< std::flush;
 			std::getline(std::cin, input);
+			cout << endl;
 
 			//If the user choose one of the available actions, execute it.
 			switch(tolower(input[0]))
@@ -190,7 +191,23 @@ void Game::display_score()
 		sum += score[i];
 	}
 	grade = (sum / ORDERS_PER_GAME)*100;
-	cout << "GAME OVER. YOUR SCORE WAS " << setprecision(0) << fixed << grade << "%." << endl;
+	cout << setprecision(0) << fixed;
+		std::cout 	<< "\t\t\t\t    ___\n" <<
+						"\t\t\t\t   /  /\n" <<
+						"\t\t\t\t  /  /\n" <<
+						"\t\t\t\t /  /\n" <<
+						"\t\t\t====================\n" <<
+						"\t\t\t|                  |\n" <<
+						"\t\t\t|                  |\n" <<
+						"\t\t\t |   YOUR SCORE:   |\n" <<
+						"\t\t\t |      " << grade << "%   \t   |\n" <<
+						"\t\t\t |                |\n" <<
+						"\t\t\t |             _  |\n" <<
+						"\t\t\t  | _    _    (_)|\n" <<
+						"\t\t\t  |(_)  (_)_   _ |\t\t\n" <<
+						"\t\t\t  |  _   _(_) (_)|\t\t\n" <<
+						"\t\t\t  | (_) (_) _  _ |\t\t\n" <<
+						"\t\t\t  |____(_)_(_)(_)|\t\t\n" << std::endl;
 	return;
 }
 
