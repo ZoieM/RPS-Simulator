@@ -38,6 +38,11 @@ void No_Order_State::brew_tea(std::string tea)
 //	}
 }
 
+void No_Order_State::add_topping (string topping)
+{
+	cout<<"ERROR: You can't add any toppings until you take a customer's order."<<endl;
+}
+
 void No_Order_State::give_to_customer()
 {
 	std::cout << "ERROR: You don't have any tea to give to the customer. Take the customer's order." << std::endl;

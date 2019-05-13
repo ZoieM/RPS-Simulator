@@ -21,7 +21,7 @@ int Drink::get_number_of_toppings() {
 bool Drink::same_drinks(Drink other_drink) {
     if (other_drink.tea!=this->tea) return false;
     //else if (other_drink.number_of_toppings!=this->number_of_toppings) return false;
-    //else if (other_drink.toppings!=this->toppings) return false;
+    else if (other_drink.toppings[0]!=this->toppings[0]) return false;
     else return true;
 }
 

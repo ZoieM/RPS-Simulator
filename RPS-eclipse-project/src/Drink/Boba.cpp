@@ -13,6 +13,8 @@ using namespace std;
 Boba::Boba()
 {
 	description+="Boba ";
+	toppings[0]=Boba_t;
+	number_of_toppings++;
 }
 
 string Boba::drink_to_string() {

@@ -17,6 +17,9 @@ public:
 	virtual ~Needs_Toppings_State();
 	Order_State_Machine *order_sm;
 	void take_order();
+	void brew_tea(std::string tea);
+	void add_topping(string topping);
+	void give_to_customer();
 };
 
 #endif /* STATE_MACHINE_NEEDS_TOPPINGS_STATE_H_ */

@@ -14,7 +14,7 @@
 using namespace std;
 
 enum Type_Of_Tea { Green, Black, Oolong, Thai, Undefined };
-enum Type_Of_Topping { Boba, Jelly, Milk, Ice, Sugar };
+enum Type_Of_Topping { Boba_t, Jelly_t, Milk_t, Ice_t, Sugar_t };
 
 class Drink {
 	public:

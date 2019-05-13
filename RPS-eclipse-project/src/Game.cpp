@@ -125,7 +125,7 @@ void Game::run_game()
 						<< "\t- [T]ake an order \n"
 						//<< "\t- [G]rab a cup \n"
 						<< "\t- [B]rew tea \n"
-						//<< "\t- [A]dd a topping \n"
+						<< "\t- [A]dd a topping \n"
 						<< "\t- [O]rder Up! \n"
 						<< "What do you want to do? "
 						<< std::flush;
@@ -145,12 +145,17 @@ void Game::run_game()
 									this->Order_SM.current_state->brew_tea(input);
 									break;
 
+						case 'a': 	input_is_valid = true;
+									std::cout << "You try to add some toppings." << std::endl;
+									this->Order_SM.current_state->add_topping(input);
+									break;
+
 						case 'o': 	input_is_valid = true;
 									std::cout << "You try to give the customer their order." << std::endl;
 									this->Order_SM.current_state->give_to_customer();
 									break;
 
-						default:	std::cout << "Invalid Input! Enter \"[T]ake Order\", \"[B]rew Tea\", or \"[O]rder Up\". (Enter t, b, or o)." << std::endl;
+						default:	std::cout << "Invalid Input! Enter \"[T]ake Order\", \"[B]rew Tea\", \"[A]dd a topping\" or \"[O]rder Up\". (Enter t, b, a or o)." << std::endl;
 									//std::cout << "Invalid Input! Enter [t], [g], [b], [a], or [o]." << std::endl;
 
 					}

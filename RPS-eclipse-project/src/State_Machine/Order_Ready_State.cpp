@@ -49,6 +49,33 @@ void Order_Ready_State::brew_tea(std::string tea)
 	}while(!input_is_valid);
 }
 
+void Order_Ready_State::add_topping(string topping)
+{
+	std::string input;
+	bool input_is_valid = false;
+	do
+	{
+		cout<< "You have already finished adding toppings.\n"
+			<< "Do you want to add a different toppings ? ([Y]es / [N]o): "
+			<< flush;
+
+		std::getline(std::cin, input);
+		switch(tolower(input[0]))
+		{
+		case 'y': input_is_valid = true;
+		cout<<"Adding a different toppings..."<<endl;
+		order_sm->current_state = order_sm->Needs_Toppings_State;
+		break;
+		case 'n': input_is_valid = true;
+		cout<<"'You decided not to add more toppings."<<endl;
+		break;
+		default: cout<<"Invalid Input! Enter [y] or [n]."<<endl;
+		}
+	} while (!input_is_valid);
+
+
+}
+
 void Order_Ready_State::give_to_customer()
 {
 	//If made the tea the customer ordered

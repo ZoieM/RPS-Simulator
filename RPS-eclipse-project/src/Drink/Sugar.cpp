@@ -13,6 +13,8 @@ using namespace std;
 Sugar::Sugar()
 {
 	description+="Sugar ";
+	toppings[0]=Sugar_t;
+	number_of_toppings++;
 }
 
 

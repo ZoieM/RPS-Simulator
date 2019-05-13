@@ -13,6 +13,8 @@ using namespace std;
 Milk::Milk()
 {
 	description+="Milk ";
+	toppings[0]=Milk_t;
+	number_of_toppings++;
 }
 
 string Milk::drink_to_string() {

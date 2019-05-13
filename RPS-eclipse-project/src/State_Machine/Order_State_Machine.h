@@ -26,8 +26,8 @@ public:
 	State* No_Order_State;
 	//State* Needs_Cup_State;
 	State* Needs_Tea_State;
-	//State* Needs_Toppings_State;
 	State* Order_Ready_State;
+	State* Needs_Toppings_State;
 
 	//Current State of State Machine
 	State* current_state;

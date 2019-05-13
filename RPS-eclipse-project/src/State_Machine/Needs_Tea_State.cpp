@@ -91,9 +91,14 @@ void Needs_Tea_State::brew_tea(std::string tea)
 	if(valid_tea)//If we brewed tea
 	{
 		//For demo, only brew tea, then order up
-		order_sm->current_state = order_sm->Order_Ready_State;
+		order_sm->current_state = order_sm->Needs_Toppings_State;
 
 	}
+}
+
+void Needs_Tea_State::add_topping(string topping)
+{
+	cout << "Error: You haven't made any tea yet! Make some tea before adding the toppings."<<endl;
 }
 
 void Needs_Tea_State::give_to_customer()
