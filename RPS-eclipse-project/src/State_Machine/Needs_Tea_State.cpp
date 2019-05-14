@@ -37,7 +37,7 @@ void Needs_Tea_State::brew_tea(std::string tea)
 		tea[i]=tolower(tea[i]);
 	}
 	//Look for a valid tea type. If valid, brew it.
-	if(tea.find("green tea") != std::string::npos)
+	if(tea.find("green") != std::string::npos)
 	{
 		valid_tea = true;
 		if(order_sm->current_drink != NULL) //Delete the tea if one already existed
@@ -47,7 +47,7 @@ void Needs_Tea_State::brew_tea(std::string tea)
 		order_sm->current_drink = new Green_Tea;
 		std::cout << "You brewed a cup of Green Tea." << endl;
 	}
-	else if(tea.find("oolong tea") != std::string::npos)
+	else if(tea.find("oolong") != std::string::npos)
 	{
 		valid_tea = true;
 		if(order_sm->current_drink != NULL) //Delete the tea if one already existed
@@ -57,7 +57,7 @@ void Needs_Tea_State::brew_tea(std::string tea)
 		order_sm->current_drink = new Oolong_Tea;
 		std::cout << "You brewed a cup of Oolong Tea." << endl;
 	}
-	else if(tea.find("black tea") != std::string::npos)
+	else if(tea.find("black") != std::string::npos)
 	{
 		valid_tea = true;
 		if(order_sm->current_drink != NULL) //Delete the tea if one already existed
@@ -67,7 +67,7 @@ void Needs_Tea_State::brew_tea(std::string tea)
 		order_sm->current_drink = new Black_Tea;
 		std::cout << "You brewed a cup of Black Tea." << endl;
 	}
-	else if(tea.find("thai tea") != std::string::npos)
+	else if(tea.find("thai") != std::string::npos)
 	{
 		valid_tea = true;
 		if(order_sm->current_drink != NULL) //Delete the tea if one already existed
@@ -90,18 +90,27 @@ void Needs_Tea_State::brew_tea(std::string tea)
 	//State Transition
 	if(valid_tea)//If we brewed tea
 	{
-		//For demo, only brew tea, then order up
-		order_sm->current_state = order_sm->Needs_Toppings_State;
+		if(order_sm->ideal_drink.get_number_of_toppings() > 0)
+		{
+			//If the customer ordered one or more toppings
+			order_sm->current_state = order_sm->Needs_Toppings_State;
+		}
+		else
+		{
+			//If the customer didn't order any toppings
+			order_sm->current_state = order_sm->Order_Ready_State;
+		}
+
 
 	}
 }
 
 void Needs_Tea_State::add_topping(string topping)
 {
-	cout << "Error: You haven't made any tea yet! Make some tea before adding the toppings."<<endl;
+	cout << "Error: You haven't made any tea yet! Make some tea before adding the toppings."<< endl;
 }
 
 void Needs_Tea_State::give_to_customer()
 {
-	cout << "ERROR: You haven't made any tea yet! Make some tea before giving the customer their order." << endl;
+	cout << "Error: You haven't made any tea yet! Make some tea before giving the customer their order." << endl;
 }

@@ -15,7 +15,8 @@ using namespace std;
 
 class Ice : public Condiment_Decorator {
     public:
-    Ice();
+	Ice();
+    Ice(Drink the_drink);
     virtual string drink_to_string();
 };
 

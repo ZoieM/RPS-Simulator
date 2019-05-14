@@ -89,6 +89,19 @@ void Order_Ready_State::give_to_customer()
 	else//we made the wrong tea
 	{
 		order_sm->mistakes++;
-		cout << "This isn't what I ordered! Please, make it again." << endl;
+		if(order_sm->current_drink->has_bad_ingredient(order_sm->ideal_drink))
+		{
+			cout << "Ew! You made " << order_sm->current_drink->drink_to_string() << endl
+					<< "but I ordered " << order_sm->ideal_drink.drink_to_string() << endl
+					<< "Please, make it again." << endl;
+		}
+		else
+		{
+			cout << "Hey, this isn't everything I asked for!" << endl
+					<< "You made " << order_sm->current_drink->drink_to_string() << endl
+					<< "but I ordered " << order_sm->ideal_drink.drink_to_string() << endl
+					<< "Please, make it again." << endl;
+		}
+
 	}
 }

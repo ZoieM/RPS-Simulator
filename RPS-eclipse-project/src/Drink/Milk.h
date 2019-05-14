@@ -15,7 +15,8 @@ using namespace std;
 
 class Milk : public Condiment_Decorator {
     public:
-    Milk();
+	Milk();
+    Milk(Drink the_drink);
     virtual string drink_to_string();
 };
 

@@ -16,6 +16,7 @@ using namespace std;
 class Boba : public Condiment_Decorator {
     public:
     Boba();
+	Boba(Drink the_drink);
     virtual string drink_to_string();
 };
 

@@ -15,7 +15,8 @@ using namespace std;
 
 class Jelly : public Condiment_Decorator {
     public:
-    Jelly();
+	Jelly();
+    Jelly(Drink the_drink);
     virtual string drink_to_string();
 };
 

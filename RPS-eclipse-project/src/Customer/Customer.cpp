@@ -46,7 +46,6 @@ Drink Customer::get_order()
 		{
 		case 0: temp = current_order->description;
 				current_order = new Boba;
-				temp += "with ";
 				temp = temp + current_order->description;
 				current_order->description.clear();
 				current_order->description = temp;
@@ -57,7 +56,6 @@ Drink Customer::get_order()
 				break;
 		case 1: temp = current_order->description;
 				current_order = new Ice;
-				temp += "with ";
 				temp = temp + current_order->description;
 				current_order->description.clear();
 				current_order->description = temp;
@@ -68,7 +66,6 @@ Drink Customer::get_order()
 				break;
 		case 2: temp = current_order->description;
 				current_order = new Jelly;
-				temp += "with ";
 				temp = temp + current_order->description;
 				current_order->description.clear();
 				current_order->description = temp;
@@ -79,7 +76,6 @@ Drink Customer::get_order()
 				break;
 		case 3: temp = current_order->description;
 				current_order = new Milk;
-				temp += "with ";
 				temp = temp + current_order->description;
 				current_order->description.clear();
 				current_order->description = temp;
@@ -90,7 +86,6 @@ Drink Customer::get_order()
 				break;
 		case 4: temp = current_order->description;
 				current_order = new Sugar;
-				temp += "with ";
 				temp = temp + current_order->description;
 				current_order->description.clear();
 				current_order->description = temp;

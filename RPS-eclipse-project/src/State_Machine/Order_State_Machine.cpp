@@ -43,11 +43,6 @@ Order_State_Machine::~Order_State_Machine() {
 	{
 		delete Order_Ready_State;
 	}
-
-//	if(current_drink)
-//	{
-//		delete current_drink;
-//	}
 }
 
 void Order_State_Machine::init(){
@@ -63,9 +58,4 @@ void Order_State_Machine::init(){
 
 	//drink objects will be defined in other states
 }
-
-//void Order_State_Machine::change_difficulty(Difficulty difficulty)
-//{
-//	this->customer.set_difficulty(difficulty);
-//}
 

@@ -25,7 +25,29 @@ void Needs_Toppings_State::take_order()
 
 void Needs_Toppings_State::brew_tea(string tea)
 {
-	cout << "Error: You already brewed the tea!"<<endl;
+	std::string input;
+		bool input_is_valid = false;
+
+		do{
+			std::cout << "You have already made " << order_sm->current_drink->drink_to_string()
+				 << ".\nDo you want to throw this away? ([Y]es / [N]o): "
+				 << flush;
+
+			std::getline(std::cin, input);
+
+			switch(tolower(input[0]))
+			{
+				case 'y': 	input_is_valid = true;
+							std::cout << "Brewing a new cup of tea..." << std::endl;
+							order_sm->current_state = order_sm->Needs_Tea_State;//change state
+							order_sm->Needs_Tea_State->brew_tea(tea);//brew tea
+							break;
+				case 'n':	input_is_valid = true;
+							std::cout << "You decided not to brew any tea." << std::endl;
+							break;
+				default:	std::cout << "Invalid Input! Enter [y] or [n]." << std::endl;
+			}
+		}while(!input_is_valid);
 }
 
 void Needs_Toppings_State::add_topping(string topping)
@@ -40,36 +62,36 @@ void Needs_Toppings_State::add_topping(string topping)
 	if(topping.find("boba") != std::string::npos)
 	{
 		valid_topping = true;
-		order_sm->current_drink->toppings[0] = Boba_t;
+		order_sm->current_drink = new Boba(*(order_sm->current_drink));
 		cout<<"You added boba into the "<<order_sm->current_drink->drink_to_string()<<endl;
 	}
 	else if(topping.find("jelly") != std::string::npos)
 	{
 		valid_topping = true;
-		order_sm->current_drink->toppings[0] = Jelly_t;
+		order_sm->current_drink = new Jelly(*(order_sm->current_drink));
 		cout<<"You added Jelly into the "<<order_sm->current_drink->drink_to_string()<<endl;
 	}
 	else if(topping.find("milk") != std::string::npos)
 	{
 		valid_topping = true;
-		order_sm->current_drink->toppings[0] = Milk_t;
+		order_sm->current_drink = new Milk(*(order_sm->current_drink));
 		cout<<"You added Milk into the "<<order_sm->current_drink->drink_to_string()<<endl;
 	}
 	else if(topping.find("ice") != std::string::npos)
 	{
 		valid_topping = true;
-		order_sm->current_drink->toppings[0] = Ice_t;
+		order_sm->current_drink = new Ice(*(order_sm->current_drink));
 		cout<<"You added ice into the "<<order_sm->current_drink->drink_to_string()<<endl;
 	}
 	else if(topping.find("sugar") != std::string::npos)
 	{
 		valid_topping = true;
-		order_sm->current_drink->toppings[0] = Sugar_t;
+		order_sm->current_drink = new Sugar(*(order_sm->current_drink));
 		cout<<"You added sugar into the "<<order_sm->current_drink->drink_to_string()<<endl;
 	}
 	else //invalid tea type
 	{
-		cout << "You can't add that type of topping. Here are the types of toppings you can brew:\n"
+		cout << "You can't add that type of topping. Here are the types of toppings you can add:\n"
 			 << "\tBoba\n"
 			 << "\tJelly\n"
 			 << "\tMilk\n"
@@ -79,15 +101,16 @@ void Needs_Toppings_State::add_topping(string topping)
 	}
 
 	//State Transition
-	if(valid_topping)//If we brewed tea
+	if(valid_topping)//If we added a topping
 	{
-		//For demo, only brew tea, then order up
-		order_sm->current_state = order_sm->Order_Ready_State;
-
+		if(order_sm->ideal_drink.same_drinks(*(order_sm->current_drink)))
+		{
+			order_sm->current_state = order_sm->Order_Ready_State;
+		}
 	}
 }
 
 void Needs_Toppings_State::give_to_customer()
 {
-	cout << "You can't give customer a Drink you haven't add toppings yet"<<endl;
+	order_sm->Order_Ready_State->give_to_customer();
 }
